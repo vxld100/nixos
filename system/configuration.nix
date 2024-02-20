@@ -181,6 +181,13 @@
   # This option is needed to make it so that sway unlocks at all. If it is not set, even the right password won't work
   security.pam.services.swaylock = {};
 
+  services.incron = {
+		enable = true;
+		systab = ''
+/home/lilin/NixOS/secrets IN_MODIFY,IN_CREATE,IN_DELETE /home/lilin/NixOS/encrypt.sh $@/$#
+		'';
+  };
+
   # started in user sessions.
   # programs.mtr.enable = true;
   # programs.gnupg.agent = {
