@@ -45,6 +45,7 @@
 			zathura
 			anki
 			lesspass-cli
+			texlive.combined.scheme-medium
 	 	];
 
 		# Home Manager is pretty good at managing dotfiles. The primary way to manage
