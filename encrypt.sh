@@ -1,6 +1,7 @@
 #!/usr/bin/env nix-shell
 #! nix-shell -i bash 
 #! nix-shell -p lesspass-cli openssl gawk
+#! nix-shell -I https://github.com/NixOS/nixpkgs/archive/23.11.tar.gz
 
 # Define input and output directories
 input_dir="secrets"
