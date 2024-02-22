@@ -176,6 +176,7 @@
 	 pamixer
 	 swaylock
 	 openssl
+	 jupyter
   ];
 
   # This option is needed to make it so that sway unlocks at all. If it is not set, even the right password won't work
@@ -183,10 +184,61 @@
 
   services.incron = {
 		enable = true;
+		extraPackages = [ pkgs.nix ];
 		systab = ''
 /home/lilin/NixOS/secrets IN_MODIFY,IN_CREATE,IN_DELETE /home/lilin/NixOS/encrypt.sh $@/$#
 		'';
   };
+	
+	RStudio-with-my-packages = pkgs.rstudioWrapper.override{ packages = with pkgs.rPackages; [ ggplot2 dplyr xts ]; };
+
+	users.users.jupyter.group = "jupyter";
+
+	services.jupyter = {
+		enable = true;
+		password = "'sha1:1b961dc713fb:88483270a63e57d18d43cf337e629539de1436ba'";
+		package = pkgs.jupyter;
+		kernels = {
+			python3 = let
+				env = (pkgs.python3.withPackages (pythonPackages: with pythonPackages; [
+					ipykernel
+					pandas
+				]));
+			in {
+				displayName = "Python 3 for machine learning";
+				argv = [
+					"${env.interpreter}"
+					"-m"
+					"ipykernel_launcher"
+					"-f"
+					"{connection_file}"
+			 	];
+				language = "python";
+			};
+
+			R = let
+				rWrapper = pkgs.rWrapper;
+  				rPackages = pkgs.rPackages;
+				env = (rWrapper.override{ packages = with rPackages; [ 
+						irkernel
+						ggplot2 
+						dplyr 
+						xts 
+					]; 
+				});
+			in {
+				displayName = "R for Statistics";
+				argv = [
+					"${pkgs.rWrapper}/bin/R"
+					"-m"
+					"irkernel"
+					"-f"
+					"{connection_file}"
+				];
+				language = "R";
+			};
+		};
+	};
 
   # started in user sessions.
   # programs.mtr.enable = true;
