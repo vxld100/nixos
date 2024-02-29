@@ -48,6 +48,10 @@
 			texlive.combined.scheme-medium
 			libreoffice-still
 			rclone
+			imv
+			grim
+			slurp
+			imagemagick
 	 	];
 
 		# Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -94,7 +98,7 @@
 			rg = "ranger";
 			vim = "nvim $1";
 			down = "shutdown 0";
-			sync = "sudo rclone bisync ~/Uni pcloud:/Uni --verbose; sudo chown lilin:user ~/Uni";
+			sync = "sudo rclone bisync ~/Uni pcloud:/Uni --verbose; sudo chown lilin:users ~/Uni";
 
 			update = "sudo nixos-rebuild switch -I nixos-config=$HOME/NixOS/system/configuration.nix";
 			home = "home-manager switch -f $HOME/NixOS/home/home.nix";
