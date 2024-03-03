@@ -57,6 +57,8 @@
     };
   };
 
+  hardware.acpilight.enable = true;
+
   # Configuring systemd services
   systemd.user.services.mpris-proxy = {
     description = "Mpris proxy";
@@ -155,7 +157,7 @@
   users.users.lilin = {
     isNormalUser = true;
     initialPassword = "nixos";
-    extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" "video" ]; # Enable ‘sudo’ for the user.
     useDefaultShell = true;
   };
 
@@ -177,6 +179,7 @@
 	 swaylock
 	 openssl
 	 jupyter
+	 unzip
   ];
 
   # This option is needed to make it so that sway unlocks at all. If it is not set, even the right password won't work
@@ -190,8 +193,6 @@
 		'';
   };
 	
-	RStudio-with-my-packages = pkgs.rstudioWrapper.override{ packages = with pkgs.rPackages; [ ggplot2 dplyr xts ]; };
-
 	users.users.jupyter.group = "jupyter";
 
 	services.jupyter = {
