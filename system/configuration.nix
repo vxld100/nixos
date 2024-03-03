@@ -193,54 +193,6 @@
 		'';
   };
 	
-	users.users.jupyter.group = "jupyter";
-
-	services.jupyter = {
-		enable = true;
-		password = "'sha1:1b961dc713fb:88483270a63e57d18d43cf337e629539de1436ba'";
-		package = pkgs.jupyter;
-		kernels = {
-			python3 = let
-				env = (pkgs.python3.withPackages (pythonPackages: with pythonPackages; [
-					ipykernel
-					pandas
-				]));
-			in {
-				displayName = "Python 3 for machine learning";
-				argv = [
-					"${env.interpreter}"
-					"-m"
-					"ipykernel_launcher"
-					"-f"
-					"{connection_file}"
-			 	];
-				language = "python";
-			};
-
-			R = let
-				rWrapper = pkgs.rWrapper;
-  				rPackages = pkgs.rPackages;
-				env = (rWrapper.override{ packages = with rPackages; [ 
-						irkernel
-						ggplot2 
-						dplyr 
-						xts 
-					]; 
-				});
-			in {
-				displayName = "R for Statistics";
-				argv = [
-					"${pkgs.rWrapper}/bin/R"
-					"-m"
-					"irkernel"
-					"-f"
-					"{connection_file}"
-				];
-				language = "R";
-			};
-		};
-	};
-
   # started in user sessions.
   # programs.mtr.enable = true;
   # programs.gnupg.agent = {
