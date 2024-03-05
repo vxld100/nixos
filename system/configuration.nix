@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+		./postgresql.nix
 		../secrets/eduroam.nix
       <apple-silicon-support-temp-fix/apple-silicon-support>
     ];

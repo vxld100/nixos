@@ -49,6 +49,7 @@
 			libreoffice-still
 			rclone
 			imv
+			pgadmin4-desktopmode
 			
 			# For screenshots
 			grim
