@@ -10,7 +10,7 @@
       ./hardware-configuration.nix
 		./postgresql.nix
 		../secrets/eduroam.nix
-      <apple-silicon-support-temp-fix/apple-silicon-support>
+      <apple-silicon-support/apple-silicon-support>
     ];
 
   nixpkgs.config.allowUnfree = true;
@@ -40,7 +40,6 @@
   # Specify path to peripheral firmware files.
   hardware.asahi = {
     withRust = true;
-    addEdgeKernelConfig = true;
     useExperimentalGPUDriver = true;
     experimentalGPUInstallMode = "replace";
     peripheralFirmwareDirectory = ./firmware;
