@@ -57,6 +57,8 @@
 			imagemagick
 
 			unzip
+			zip
+			cheat
 	 	];
 
 		# Home Manager is pretty good at managing dotfiles. The primary way to manage
