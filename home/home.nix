@@ -94,55 +94,65 @@
 	 	WLR_NO_HARDWARE_CURSORS=1; # This way the cursor is not invisible on wayland
 	};
 
-	programs.zsh = {
-		enable = true;
-		autocd = true;
-		defaultKeymap = "viins";
+	programs = {
+   	direnv = {
+   		enable = true;
+      	enableBashIntegration = true; # see note on other shells below
+			nix-direnv.enable = true;
+    	};
 
-		shellAliases = {
-			ll = "ls -Alhp";
-			la = "ls -Ahp";
-			rg = "ranger";
-			vim = "nvim $1";
-			down = "shutdown 0";
-			sync = "sudo rclone bisync ~/Uni pcloud:/Uni --verbose; sudo chown -R lilin:users ~/Uni";
-
-			update = "sudo nixos-rebuild switch -I nixos-config=$HOME/NixOS/system/configuration.nix";
-			home = "home-manager switch -f $HOME/NixOS/home/home.nix";
-		};
-
-		syntaxHighlighting = {
+		zsh = {
 			enable = true;
-			styles = {
-				command = "none";
-				alias = "none";
-				builtin = "none";
-				precommand = "fg=magenta,bold";
-				function = "fg=magenta";
-				unknown-token = "fg=red";
+			autocd = true;
+			defaultKeymap = "viins";
+
+			shellAliases = {
+				ll = "ls -Alhp";
+				la = "ls -Ahp";
+				rg = "ranger";
+				vim = "nvim $1";
+				down = "shutdown 0";
+				sync = "sudo rclone bisync ~/Uni pcloud:/Uni --verbose; sudo chown -R lilin:users ~/Uni";
+
+				update = "sudo nixos-rebuild switch -I nixos-config=$HOME/NixOS/system/configuration.nix";
+				home = "home-manager switch -f $HOME/NixOS/home/home.nix";
 			};
-		};
 
-		antidote = {
-			enable = true;
-			plugins = [
-				"romkatv/powerlevel10k"
-			];
-		};
+			syntaxHighlighting = {
+				enable = true;
+				styles = {
+					command = "none";
+					alias = "none";
+					builtin = "none";
+					precommand = "fg=magenta,bold";
+					function = "fg=magenta";
+					unknown-token = "fg=red";
+				};
+			};
 
-		initExtraFirst = ''
+			antidote = {
+				enable = true;
+				plugins = [
+					"romkatv/powerlevel10k"
+				];
+			};
+
+			initExtraFirst = ''
 if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
 	source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
 fi
-		'';
-		initExtra = ''
+			'';
+			initExtra = ''
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 bindkey "^H" backward-delete-char
 bindkey "^?" backward-delete-char
-		'';
 
+eval "$(direnv hook zsh)"
+			'';
+
+		};
 	};
 
 
