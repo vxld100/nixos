@@ -180,6 +180,7 @@
 	 openssl
 	 jupyter
 	 unzip
+	 zip
   ];
 
   # This option is needed to make it so that sway unlocks at all. If it is not set, even the right password won't work
