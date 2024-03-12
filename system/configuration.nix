@@ -178,7 +178,6 @@
 	 pamixer
 	 swaylock
 	 openssl
-	 jupyter
 	 unzip
 	 zip
   ];
