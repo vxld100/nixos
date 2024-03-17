@@ -58,6 +58,7 @@
 
 			ffmpeg
 			mpv
+			htop
 			swww
 
 			unzip
