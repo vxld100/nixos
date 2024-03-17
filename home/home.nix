@@ -46,7 +46,7 @@
 			anki
 			lesspass-cli
 			texlive.combined.scheme-medium
-			libreoffice-still
+			libreoffice-qt
 			rclone
 			imv
 			pgadmin4-desktopmode
@@ -55,6 +55,9 @@
 			grim
 			slurp
 			imagemagick
+
+			ffmpeg
+			swww
 
 			unzip
 			zip
