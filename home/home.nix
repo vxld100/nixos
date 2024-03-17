@@ -57,6 +57,7 @@
 			imagemagick
 
 			ffmpeg
+			mpv
 			swww
 
 			unzip
