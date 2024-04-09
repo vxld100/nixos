@@ -41,7 +41,6 @@
 			cliphist
 			wl-clipboard
 			neofetch
-			micromamba
 			zathura
 			anki
 			lesspass-cli
@@ -157,6 +156,10 @@ bindkey "^?" backward-delete-char
 eval "$(direnv hook zsh)"
 			'';
 
+		};
+
+		sioyek = {
+			enable = true;
 		};
 	};
 
