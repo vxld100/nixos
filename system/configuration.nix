@@ -168,7 +168,6 @@
     wget
 	 curl
     firefox
-	 vivaldi
     alacritty
     ranger
     dolphin
