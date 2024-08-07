@@ -2,15 +2,15 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, apple-silicon-support, ... }:
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
       ./hardware-configuration.nix
-		./postgresql.nix
-		../secrets/eduroam.nix
-      <apple-silicon-support/apple-silicon-support>
+		apple-silicon-support.nixosModules.apple-silicon-support
+		#./../secrets/eduroam.nix
+      #<apple-silicon-support/apple-silicon-support>
     ];
 
   nixpkgs.config.allowUnfree = true;
@@ -18,7 +18,7 @@
   nix = {
     package = pkgs.nixFlakes;
     extraOptions = ''
-      experimental-features = nix-command flakes
+      experimental-features = nix-command flakes repl-flake
     '';
 	 gc = {
 	   automatic = true;
@@ -39,10 +39,12 @@
 
   # Specify path to peripheral firmware files.
   hardware.asahi = {
+  	 enable = true;
     withRust = true;
     useExperimentalGPUDriver = true;
     experimentalGPUInstallMode = "replace";
     peripheralFirmwareDirectory = ./firmware;
+	 setupAsahiSound = false;
   };
 
   hardware.opengl.enable = true;
@@ -70,7 +72,7 @@
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking = {
-    hostName = "nixos";
+    hostName = "asahi";
     networkmanager.enable = true;
     networkmanager.wifi.backend = "iwd";
   };
@@ -137,12 +139,14 @@
   # services.printing.enable = true;
 
   # Enable sound.
-  sound.enable = true;
+  #sound.enable = true;
   services.pipewire = {
     enable = true;
 	 audio.enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
+    alsa = {
+	   enable = true;
+      support32Bit = true;
+		};
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;

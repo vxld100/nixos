@@ -40,25 +40,27 @@
 	 	# '')
 			cliphist
 			wl-clipboard
+			mako
 			neofetch
 			zathura
 			anki
 			lesspass-cli
-			texlive.combined.scheme-medium
 			libreoffice-qt
 			rclone
 			imv
-			pgadmin4-desktopmode
 			
 			# For screenshots
 			grim
 			slurp
 			imagemagick
 
+			teams-for-linux
+
 			ffmpeg
 			mpv
 			htop
 			swww
+			gimp
 
 			unzip
 			zip
@@ -116,7 +118,8 @@
 				rg = "ranger";
 				vim = "nvim $1";
 				down = "shutdown 0";
-				sync = "sudo rclone bisync ~/Uni pcloud:/Uni --verbose; sudo chown -R lilin:users ~/Uni";
+				sync = "sudo rclone bisync ~/Uni pcloud:/Uni --verbose; sudo chown -R lilin:users ~/Uni;\
+								 sudo rclone bisync ~/Documents pcloud:/Documents --verbose; sudo chown -R lilin:users ~/Documents";
 
 				update = "sudo nixos-rebuild switch -I nixos-config=$HOME/NixOS/system/configuration.nix";
 				home = "home-manager switch -f $HOME/NixOS/home/home.nix";
