@@ -2,15 +2,14 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, apple-silicon-support, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   imports =
     [
       ./hardware-configuration.nix
-		apple-silicon-support.nixosModules.apple-silicon-support
+		inputs.apple-silicon-support.nixosModules.apple-silicon-support
 		#./../secrets/eduroam.nix
-      #<apple-silicon-support/apple-silicon-support>
     ];
 
   nixpkgs.config.allowUnfree = true;
@@ -42,12 +41,12 @@
   	 enable = true;
     withRust = true;
     useExperimentalGPUDriver = true;
-    experimentalGPUInstallMode = "replace";
+    experimentalGPUInstallMode = "overlay";
     peripheralFirmwareDirectory = ./firmware;
-	 setupAsahiSound = false;
+	 #setupAsahiSound = false;
   };
 
-  hardware.opengl.enable = true;
+  hardware.graphics.enable = true;
 
   hardware.bluetooth = {
     enable = true; # enables support for Bluetooth
@@ -127,10 +126,11 @@
   services = {
     xserver = {
       enable = true;
-      layout = "ch";
-      displayManager.sddm.enable = true;
+      xkb.layout = "ch";
     };
   };
+
+  services.displayManager.sddm.enable = true;
 
 
   # services.xserver.xkb.options = "eurosign:e,caps:escape";
@@ -153,7 +153,7 @@
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
+  services.libinput.enable = true;
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
 
@@ -190,14 +190,6 @@
 
   # This option is needed to make it so that sway unlocks at all. If it is not set, even the right password won't work
   security.pam.services.swaylock = {};
-
-  services.incron = {
-		enable = true;
-		extraPackages = [ pkgs.nix ];
-		systab = ''
-/home/lilin/NixOS/secrets IN_MODIFY,IN_CREATE,IN_DELETE /home/lilin/NixOS/encrypt.sh $@/$#
-		'';
-  };
 	
   # started in user sessions.
   # programs.mtr.enable = true;

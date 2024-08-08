@@ -20,11 +20,12 @@
 	 };
   };
 
-  outputs = { nixpkgs, home-manager, apple-silicon-support,... }@inputs: {
+  outputs = { nixpkgs, home-manager, apple-silicon-support,... }@inputs: 
+  {
     nixosConfigurations = {
 	 	asahi = nixpkgs.lib.nixosSystem {
 			system = "aarch64-linux";
-			specialArgs = { inherit apple-silicon-support; };
+			specialArgs = { inherit inputs; };
 			modules = [
 			  ./system/configuration.nix
 
