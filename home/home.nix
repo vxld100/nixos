@@ -5,6 +5,8 @@
 	# manage.
 	home.username = "lilin";
 	home.homeDirectory = "/home/lilin";
+	
+	nixpkgs.config.allowUnfree = true;
 
 	# No idea how to get this to work. Why the fuck is EVERYTHING in nix different?! Can't even declare variables.
 	#systemConfigDirectory = "${home.homeDirectory}/Nixos/system/configuration.nix";

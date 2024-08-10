@@ -11,6 +11,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
+
   outputs = { self, nixpkgs, home-manager, apple-silicon-support, ... }@inputs: 
   let
     system = "aarch64-linux";
@@ -23,17 +24,12 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./system/configuration.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.lilin = import ./home/home.nix;
-          }
+          apple-silicon-support.nixosModules.default
         ];
       };
     };
-    
-    homeManagerConfigurations = {
+
+    homeConfigurations = {
       lilin = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
