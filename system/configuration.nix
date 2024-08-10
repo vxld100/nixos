@@ -15,14 +15,17 @@
   nixpkgs.config.allowUnfree = true;
 
   nix = {
-    package = pkgs.nixFlakes;
+    package = pkgs.nixVersions.stable;  # Changed from pkgs.nixFlakes
     extraOptions = ''
       experimental-features = nix-command flakes repl-flake
     '';
-	 gc = {
-	   automatic = true;
-		options = "--delete-older-than 10d";
-	 };
+    gc = {
+      automatic = true;
+      options = "--delete-older-than 10d";
+    };
+    settings = {
+      experimental-features = [ "nix-command" "flakes" ];  # Added this line
+    };
   };
 
   # Use the systemd-boot EFI boot loader.
@@ -41,7 +44,7 @@
   	 enable = true;
     withRust = true;
     useExperimentalGPUDriver = true;
-    experimentalGPUInstallMode = "overlay";
+    experimentalGPUInstallMode = "replace";
     peripheralFirmwareDirectory = ./firmware;
 	 #setupAsahiSound = false;
   };
@@ -172,7 +175,6 @@
     wget
 	 curl
     firefox
-	 vivaldi
     alacritty
     ranger
     dolphin
