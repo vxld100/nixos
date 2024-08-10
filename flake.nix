@@ -1,32 +1,27 @@
 {
   description = "Nixos Flake for configuration.";
-
   inputs = {
-    # NixOS official package source, using the nixos-23.11 branch here
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-
-	 home-manager = {
+    home-manager = {
       url = "github:nix-community/home-manager";
-      # The `follows` keyword in inputs is used for inheritance.
-      # Here, `inputs.nixpkgs` of home-manager is kept consistent with
-      # the `inputs.nixpkgs` of the current flake,
-      # to avoid problems caused by different versions of nixpkgs.
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-	 apple-silicon-support = {
-	 	url = "github:tpwrules/nixos-apple-silicon";
-		inputs.nixpkgs.follows = "nixpkgs";
-	 };
+    apple-silicon-support = {
+      url = "github:tpwrules/nixos-apple-silicon";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
-
-  outputs = { nixpkgs, home-manager, apple-silicon-support,... }@inputs: 
+  outputs = { self, nixpkgs, home-manager, apple-silicon-support, ... }@inputs: 
+  let
+    system = "aarch64-linux";
+    pkgs = nixpkgs.legacyPackages.${system};
+  in
   {
     nixosConfigurations = {
-	 	asahi = nixpkgs.lib.nixosSystem {
-			system = "aarch64-linux";
-			specialArgs = { inherit inputs; };
-			modules = [
+      asahi = nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = { inherit inputs; };
+        modules = [
           ./system/configuration.nix
           home-manager.nixosModules.home-manager
           {
@@ -34,6 +29,15 @@
             home-manager.useUserPackages = true;
             home-manager.users.lilin = import ./home/home.nix;
           }
+        ];
+      };
+    };
+    
+    homeManagerConfigurations = {
+      lilin = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [
+          ./home/home.nix
         ];
       };
     };
