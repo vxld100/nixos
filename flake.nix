@@ -24,6 +24,7 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./system/configuration.nix
+			 /home/lilin/NixOS/secrets/eduroam.nix
           apple-silicon-support.nixosModules.default
         ];
       };
