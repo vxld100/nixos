@@ -75,8 +75,10 @@
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking = {
     hostName = "asahi";
-    networkmanager.enable = true;
-    networkmanager.wifi.backend = "iwd";
+    networkmanager = {
+	   enable = true;
+      wifi.backend = "iwd";
+	 };
   };
 
   services.blueman.enable = true;
@@ -153,7 +155,15 @@
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
+	 wireplumber.extraConfig.bluetoothEnhancements = {
+	  "monitor.bluez.properties" = {
+		 "bluez5.a2dp.aac.bitratemode" = "0";  # 0 = constant bitrate
+		 "bluez5.a2dp.aac.bitrate" = "320000";  # 320kbps
+		 "bluez5.a2dp.aac.quality" = "7";  # Highest quality setting
+	   };
+	 };
   };
+
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
@@ -182,6 +192,7 @@
     networkmanagerapplet
     wofi
 	 brightnessctl
+	 pavucontrol
 	 dunst
 	 pamixer
 	 swaylock
