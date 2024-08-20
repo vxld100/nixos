@@ -43,7 +43,7 @@
 			cliphist
 			wl-clipboard
 			mako
-			neofetch
+			fastfetch
 			zathura
 			anki
 			lesspass-cli
