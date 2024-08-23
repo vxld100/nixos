@@ -125,8 +125,8 @@
 				sync = "sudo rclone bisync ~/Uni pcloud:/Uni --verbose; sudo chown -R lilin:users ~/Uni;\
 								 sudo rclone bisync ~/Documents pcloud:/Documents --verbose; sudo chown -R lilin:users ~/Documents";
 
-				update = "sudo nixos-rebuild switch --flake \"$HOME/NixOS\" --impure";
-				home = "home-manager switch --flake \"$HOME/NixOS\"";
+				update = "nh os switch \"$HOME/NixOS\" -- --impure";
+				home = "nh home switch \"$HOME/NixOS\"";
 			};
 
 			syntaxHighlighting = {
