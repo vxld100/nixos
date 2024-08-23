@@ -163,9 +163,6 @@ eval "$(direnv hook zsh)"
 
 		};
 
-		sioyek = {
-			enable = true;
-		};
 	};
 
 
