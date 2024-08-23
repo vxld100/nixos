@@ -50,6 +50,8 @@
 			libreoffice-qt
 			rclone
 			imv
+			nix-output-monitor
+			nh
 			
 			# For screenshots
 			grim
