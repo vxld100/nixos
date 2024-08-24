@@ -35,6 +35,7 @@
         inherit pkgs;
         modules = [
           ./home/home.nix
+			 ./HomeModules/oh-my-posh.nix
         ];
       };
     };

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
 	# Home Manager needs a bit of information about you and the paths it should
@@ -104,65 +104,40 @@
 	 	WLR_NO_HARDWARE_CURSORS=1; # This way the cursor is not invisible on wayland
 	};
 
-	programs = {
-   	direnv = {
-   		enable = true;
-      	enableBashIntegration = true; # see note on other shells below
-			nix-direnv.enable = true;
-    	};
+	programs.direnv = {
+		enable = true;
+		enableBashIntegration = true; # see note on other shells below
+		nix-direnv.enable = true;
+	};
 
-		zsh = {
+	programs.zsh = {
+		enable = true;
+		autocd = true;
+		defaultKeymap = "viins";
+
+		shellAliases = {
+			ll = "ls -Alhp";
+			la = "ls -Ahp";
+			rg = "ranger";
+			vim = "nvim $1";
+			down = "shutdown 0";
+			sync = "sudo rclone bisync ~/Uni pcloud:/Uni --verbose; sudo chown -R lilin:users ~/Uni;\
+							 sudo rclone bisync ~/Documents pcloud:/Documents --verbose; sudo chown -R lilin:users ~/Documents";
+
+			update = "nh os switch \"$HOME/NixOS\" -- --impure";
+			home = "nh home switch \"$HOME/NixOS\"";
+		};
+
+		syntaxHighlighting = {
 			enable = true;
-			autocd = true;
-			defaultKeymap = "viins";
-
-			shellAliases = {
-				ll = "ls -Alhp";
-				la = "ls -Ahp";
-				rg = "ranger";
-				vim = "nvim $1";
-				down = "shutdown 0";
-				sync = "sudo rclone bisync ~/Uni pcloud:/Uni --verbose; sudo chown -R lilin:users ~/Uni;\
-								 sudo rclone bisync ~/Documents pcloud:/Documents --verbose; sudo chown -R lilin:users ~/Documents";
-
-				update = "nh os switch \"$HOME/NixOS\" -- --impure";
-				home = "nh home switch \"$HOME/NixOS\"";
+			styles = {
+				command = "none";
+				alias = "none";
+				builtin = "none";
+				precommand = "fg=magenta,bold";
+				function = "fg=magenta";
+				unknown-token = "fg=red";
 			};
-
-			syntaxHighlighting = {
-				enable = true;
-				styles = {
-					command = "none";
-					alias = "none";
-					builtin = "none";
-					precommand = "fg=magenta,bold";
-					function = "fg=magenta";
-					unknown-token = "fg=red";
-				};
-			};
-
-			antidote = {
-				enable = true;
-				plugins = [
-					"romkatv/powerlevel10k"
-				];
-			};
-
-			initExtraFirst = ''
-if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
-	source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
-fi
-			'';
-			initExtra = ''
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-bindkey "^H" backward-delete-char
-bindkey "^?" backward-delete-char
-
-eval "$(direnv hook zsh)"
-			'';
-
 		};
 
 	};
