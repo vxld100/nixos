@@ -38,9 +38,6 @@
 				  properties = {
 					 fetch_status = true;
 					 fetch_upstream_icon = true;
-					 untracked_modes = {
-						"/Users/user/Projects/oh-my-posh/" = "no";
-					 };
 					 source = "cli";
 					 mapped_branches = {
 						"feat/*" = "🚀 ";
@@ -128,6 +125,13 @@
 			 alignment = "left";
 			 newline = true;
 			 segments = [
+			   {
+				type = "session";
+				style = "plain";
+				foreground = "#eb60da";
+				background = "transparent";
+				template = "{{ if .SSHSession }}{{ .UserName }}@{{ .HostName }}{{ end }} ";
+				}
 				{
 				  type = "text";
 				  style = "plain";
