@@ -149,6 +149,19 @@
 	 	userEmail = "vxld100@tuta.io";
 	};
 
+	gtk = {
+	  enable = true;
+	  cursorTheme.package = pkgs.quintom-cursor-theme;
+	  cursorTheme.name = "Quintom_Ink";
+	};
+
+	home.pointerCursor = {
+	  gtk.enable = true;
+	
+	  package = pkgs.quintom-cursor-theme;
+	  name = "Quintom_Ink";
+	};
+
 	# Let Home Manager install and manage itself.
 	programs.home-manager.enable = true;
 }
