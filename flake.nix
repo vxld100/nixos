@@ -10,9 +10,13 @@
       url = "github:tpwrules/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+	 stylix = {
+	   url = "github:danth/stylix";
+		inputs.nixpkgs.follows = "nixpkgs";
+	 };
   };
 
-  outputs = { self, nixpkgs, home-manager, apple-silicon-support, ... }@inputs: 
+  outputs = { self, nixpkgs, apple-silicon-support, home-manager, ... }@inputs: 
   let
     system = "aarch64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
@@ -26,6 +30,7 @@
           ./system/configuration.nix
 			 /home/lilin/NixOS/secrets/eduroam.nix
           apple-silicon-support.nixosModules.default
+			 inputs.stylix.nixosModules.stylix
         ];
       };
     };
