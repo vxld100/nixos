@@ -15,6 +15,44 @@
 			"hyprpaper"
 		 ];
 
+		 general = {
+		    gaps_in = 10;
+			 gaps_out = 40;
+			 border_size = 4;
+			 #col.active_border = rgba(33ccffee) rgba(00ff99ee) 45deg
+			 #col.active_border = rgba(FF4500FF) rgba(898989aa) rgba(FF4500FF) 30deg
+			 "col.active_border" = "rgba(33ccffee) rgba(9F9F9Fee) rgba(33ccffee) 30deg";
+			 "col.inactive_border" = "rgba(595959aa)";
+
+			 layout = "dwindle";
+
+			 no_focus_fallback = true;
+			 no_focus_fallback = true;
+			 resize_on_border = true;
+		 };
+
+		 input = {
+			 kb_layout = "ch,ru";
+			 kb_variant = ",phonetic";
+			 kb_options = "grp:alt_shift_toggle";
+
+			 follow_mouse = 2;
+			 mouse_refocus = false;
+
+			 repeat_rate = 50;
+			 repeat_delay = 200;
+
+			 touchpad {
+				  natural_scroll = yes
+			 };
+
+			 sensitivity = 0.4; # -1.0 - 1.0, 0 means no modification.
+		 };
+
+		 cursor = {
+		   no_warps = true;
+		 };
+
 		 "$mainMod" = "SUPER";
 		 "$ModShift" = "SUPERSHIFT";
 		 "$ModAlt" = "SUPERALT";
@@ -55,11 +93,6 @@
 			"$mainMod, mouse_down, workspace, e+1";
 			"$mainMod, mouse_up, workspace, e-1";
 			"$mainMod,Tab,workspace,previous";
-
-			", XF86MonBrightnessUp, exec, brightnessctl set +20";
-			", XF86MonBrightnessDown, exec, brightnessctl set 20-";
-			"$mainMod, XF86MonBrightnessUp, exec, xbacklight -ctrl kbd_backlight -inc 25";
-			"$mainMod, XF86MonBrightnessDown, exec, xbacklight -ctlr kbd_backlight -dec 25";
 		 ];
 
 		 bindm = [
