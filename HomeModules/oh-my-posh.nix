@@ -111,7 +111,7 @@
               style = "powerline";
               foreground = "p:white";
               background = "transparent";
-              template = "took <p:blue><b>{{ .FormattedMs }}</b></>";
+              template = "took <p:blue>{{ .FormattedMs }}</>";
 				  properties = {
 				    threshold = 500;
 					 style = "austin";

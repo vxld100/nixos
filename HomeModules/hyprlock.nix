@@ -11,7 +11,7 @@
 
 	  background = [
 		 {
-			path = "screenshot";
+			path = ~/.config/hypr/wallpaper/flowers.jpg;
 			blur_passes = 3;
 			blur_size = 8;
 		 }
@@ -28,7 +28,7 @@
 			inner_color = "rgb(91, 96, 120)";
 			outer_color = "rgb(24, 25, 38)";
 			outline_thickness = 5;
-			placeholder_text = '\'Password...'\';
+			placeholder_text = "Password...";
 			shadow_passes = 2;
 		 }
 	  ];
