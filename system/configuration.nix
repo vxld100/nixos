@@ -174,9 +174,11 @@
   users.users.lilin = {
     isNormalUser = true;
     initialPassword = "nixos";
-    extraGroups = [ "wheel" "networkmanager" "video" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" "video" "multimedia" ]; # Enable ‘sudo’ for the user.
     useDefaultShell = true;
   };
+
+  users.groups.multimedia = {};
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -210,6 +212,25 @@
     enable = true;
   };
 
+  services = {
+      jellyfin = {
+        enable = true;
+        group = "multimedia";
+      };
+      sonarr = { enable = true; group = "multimedia"; };
+      radarr = { enable = true; group = "multimedia"; };
+		prowlarr = { enable = true; };
+		transmission = {
+			enable = true;
+			package = pkgs.transmission_4;
+			group = "multimedia";
+			settings = {
+			  download-dir = "/media/downloads/unsorted";
+			  incomplete-dir = "/media/downloads/processing";
+			  incomplete-dir-enabled = true;
+			};
+		};
+	};
 	
   # started in user sessions.
   # programs.mtr.enable = true;
