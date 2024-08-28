@@ -206,6 +206,10 @@
   # This option is needed to make it so that sway unlocks at all. If it is not set, even the right password won't work
   security.pam.services.swaylock = {};
 
+  services.mullvad-vpn = {
+    enable = true;
+  };
+
 	
   # started in user sessions.
   # programs.mtr.enable = true;
