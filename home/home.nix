@@ -59,6 +59,7 @@
 			imagemagick
 
 			teams-for-linux
+			jellyfin-media-player
 
 			ffmpeg
 			mpv
