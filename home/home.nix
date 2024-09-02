@@ -163,6 +163,34 @@
 	  name = "Quintom_Ink";
 	};
 
+	xdg.desktopEntries."com.github.iwalton3.jellyfin-media-player" = {
+     name = "Jellyfin Media Player";
+     comment = "Desktop client for Jellyfin";
+     exec = "jellyfinmediaplayer --scale-factor 2";
+     icon = "com.github.iwalton3.jellyfin-media-player";
+     terminal = false;
+     type = "Application";
+     categories = [ "AudioVideo" "Video" "Player" "TV" ];
+     actions = {
+       "DesktopF" = {
+         name = "Desktop [Fullscreen]";
+         exec = "jellyfinmediaplayer --fullscreen --desktop --scale-factor 2";
+       };
+       "DesktopW" = {
+         name = "Desktop [Windowed]";
+         exec = "jellyfinmediaplayer --windowed --desktop --scale-factor 2";
+       };
+       "TVF" = {
+         name = "TV [Fullscreen]";
+         exec = "jellyfinmediaplayer --fullscreen --tv --scale-factor 2";
+       };
+       "TVW" = {
+         name = "TV [Windowed]";
+         exec = "jellyfinmediaplayer --windowed --tv --scale-factor 2";
+       };
+     };
+   };
+
 	# Let Home Manager install and manage itself.
 	programs.home-manager.enable = true;
 }
