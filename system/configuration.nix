@@ -216,6 +216,7 @@
       jellyfin = { enable = true; group = "multimedia"; };
       sonarr = { enable = true; group = "multimedia"; };
       radarr = { enable = true; group = "multimedia"; };
+      lidarr = { enable = true; group = "multimedia"; };
 		prowlarr = { enable = true; };
 		transmission = {
 			enable = true;
