@@ -122,8 +122,8 @@
 			rg = "ranger";
 			vim = "nvim $1";
 			down = "shutdown 0";
-			sync = "sudo rclone bisync ~/Uni pcloud:/Uni --verbose; sudo chown -R lilin:users ~/Uni;\
-							 sudo rclone bisync ~/Documents pcloud:/Documents --verbose; sudo chown -R lilin:users ~/Documents";
+			sync = "rclone bisync ~/Uni pcloud:/Uni --verbose;\
+					  rclone bisync ~/Documents pcloud:/Documents --verbose;";
 
 			update = "nh os switch \"$HOME/NixOS\" -- --impure";
 			home = "nh home switch \"$HOME/NixOS\"";
