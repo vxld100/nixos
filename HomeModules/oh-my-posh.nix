@@ -57,13 +57,14 @@
 	alignment = "right";
 	segments = [
 	{
-	  type = "R";
+	  type = "r";
 	  style = "plain";
 	  foreground = "p:blue";
 	  background = "transparent";
 	  template = "  {{ .Full }} ";
 	  properties = {
 	    display_mode = "context";
+	    cache_version = true;
 	  };
 	}
 	{
