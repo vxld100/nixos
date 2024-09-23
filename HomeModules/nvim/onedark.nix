@@ -1,4 +1,5 @@
 {
+  programs.nixvim = {
   colorschemes.onedark = {
     enable = true;
     settings = {
@@ -21,5 +22,6 @@
         "@keyword.repeat" = { fg = "$dark_purple"; };
       };
     };
+  };
   };
 }

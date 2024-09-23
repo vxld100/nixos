@@ -1,4 +1,5 @@
 {
+  programs.nixvim = {
   keymaps = [
     { key = "<leader>h"; action = "<C-w>h"; mode = "n"; }
     { key = "<leader>j"; action = "<C-w>j"; mode = "n"; }
@@ -25,4 +26,5 @@
     { key = "<leader>d"; action = ":lua vim.diagnostic.open_float()<CR>"; mode = "n"; }
     { key = "Q"; action = "<nop>"; mode = "n"; }
   ];
+  };
 }

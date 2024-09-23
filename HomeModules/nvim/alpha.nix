@@ -1,4 +1,5 @@
 {
+  programs.nixvim = {
   plugins.alpha = {
     enable = true;
     layout = [
@@ -139,4 +140,5 @@
       vim.cmd('startinsert')
     end
   '';
+  };
 }

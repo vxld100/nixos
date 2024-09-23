@@ -1,5 +1,7 @@
 { pkgs, ... }:
 {
+  programs.nixvim = {
+
   plugins.cmp = {
     enable = true;
     autoEnableSources = true;
@@ -51,5 +53,6 @@
         "<C-e>" = "cmp.mapping.abort()";
       };
     };
+  };
   };
 }

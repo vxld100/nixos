@@ -14,9 +14,13 @@
 	   url = "github:danth/stylix";
 		inputs.nixpkgs.follows = "nixpkgs";
 	 };
+	 nixvim = {
+	   url = "github:nix-community/nixvim";
+		inputs.nixpkgs.follows = "nixpkgs";
+	 };
   };
 
-  outputs = { self, nixpkgs, apple-silicon-support, home-manager, ... }@inputs: 
+  outputs = { self, nixpkgs, apple-silicon-support, home-manager, nixvim, ... }@inputs: 
   let
     system = "aarch64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
@@ -38,9 +42,11 @@
     homeConfigurations = {
       lilin = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
+		  extraSpecialArgs = { inherit inputs; };
         modules = [
           ./home/home.nix
 			 ./HomeModules/oh-my-posh.nix
+			 ./HomeModules/nvim
         ];
       };
     };

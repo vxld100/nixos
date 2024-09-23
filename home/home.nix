@@ -1,6 +1,9 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
 
 {
+  imports = [
+    inputs.nixvim.homeManagerModules.nixvim
+  ];
 	# Home Manager needs a bit of information about you and the paths it should
 	# manage.
 	home.username = "lilin";
@@ -190,6 +193,10 @@
        };
      };
    };
+
+  programs.nixvim = {
+    enable = true;
+  };
 
 	# Let Home Manager install and manage itself.
 	programs.home-manager.enable = true;

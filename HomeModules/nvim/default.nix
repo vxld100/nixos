@@ -8,6 +8,7 @@
     ./alpha.nix
     ./neo-tree.nix
   ];
+  programs.nixvim = {
 
   plugins = {
     lualine.enable = true;
@@ -28,6 +29,8 @@
 	};
       };
     };
+
+	 web-devicons.enable = true;
 
     telescope = {
       enable = true;
@@ -74,4 +77,5 @@
       command = "lua vim.o.guicursor='a:hor20'";
     }
   ];
+  };
 }
