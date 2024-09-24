@@ -199,24 +199,28 @@
     defaultEditor = true;
     vimdiffAlias = true;
 
-    extraConfigLua = ''
-      -- Function to source .vimrc.local if it exists
-      function source_local_vimrc()
-        local vimrc = vim.fn.getcwd() .. '/.vimrc.local'
-        if vim.fn.filereadable(vimrc) == 1 then
-          vim.cmd('source ' .. vimrc)
-        end
-      end
+    autoGroups = {
+      TexAutoCompile = { clear = true; };
+    };
 
-      -- Set up autocmd to call the function when entering a directory
-      vim.api.nvim_create_autocmd({"DirChanged"}, {
-        pattern = "*",
-        callback = source_local_vimrc
-      })
-
-      -- Call the function once at startup to source .vimrc.local in the initial directory
-      source_local_vimrc()
-    '';
+    autoCmd = [
+      {
+        event = "BufWritePost";
+        pattern = "*.tex";
+        command = "silent !xelatex \"%:p\" && cp \"%:r.pdf\" \"$(dirname \"%:p\")/..\"";
+        group = "TexAutoCompile";
+      }
+      {
+        event = "VimEnter";
+        pattern = "*.tex";
+        command = "setlocal textwidth=50 | echom \"Set textwidth to 50 for .tex file\"";
+      }
+      {
+        event = "VimEnter";
+        pattern = "*.md";
+        command = "setlocal textwidth=50 | echom \"Set textwidth to 50 for .md file\"";
+      }
+    ];
   };
 
 	# Let Home Manager install and manage itself.
