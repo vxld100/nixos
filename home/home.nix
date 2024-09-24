@@ -196,6 +196,27 @@
 
   programs.nixvim = {
     enable = true;
+    defaultEditor = true;
+    vimdiffAlias = true;
+
+    extraConfigLua = ''
+      -- Function to source .vimrc.local if it exists
+      function source_local_vimrc()
+        local vimrc = vim.fn.getcwd() .. '/.vimrc.local'
+        if vim.fn.filereadable(vimrc) == 1 then
+          vim.cmd('source ' .. vimrc)
+        end
+      end
+
+      -- Set up autocmd to call the function when entering a directory
+      vim.api.nvim_create_autocmd({"DirChanged"}, {
+        pattern = "*",
+        callback = source_local_vimrc
+      })
+
+      -- Call the function once at startup to source .vimrc.local in the initial directory
+      source_local_vimrc()
+    '';
   };
 
 	# Let Home Manager install and manage itself.

@@ -15,7 +15,7 @@
     cmp_luasnip.enable = true;
     luasnip.enable = true;
     nvim-autopairs.enable = true;
-    barbecue.enable = true;
+    #barbecue.enable = true;
 
     toggleterm = {
       enable = true;
