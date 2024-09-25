@@ -26,6 +26,11 @@
     { key = "<leader>d"; action = ":lua vim.diagnostic.open_float()<CR>"; mode = "n"; }
     { key = "<leader>ca"; action = ":lua vim.lsp.buf.code_action()<CR>"; mode = "n"; }
     { key = "Q"; action = "<nop>"; mode = "n"; }
+    { key = "s"; action = "<cmd>lua require('flash').jump()<CR>"; mode = [ "n" "x" "o" ]; options.desc = "Flash"; }
+    { key = "S"; action = "<cmd>lua require('flash').treesitter()<CR>"; mode = [ "n" "x" "o" ]; options.desc = "Flash Treesitter"; }
+    { key = "r"; action = "<cmd>lua require('flash').remote()<CR>"; mode = "o"; options.desc = "Remote Flash"; }
+    { key = "R"; action = "<cmd>lua require('flash').treesitter_search()<CR>"; mode = [ "o" "x" ]; options.desc = "Treesitter Search"; }
+    { key = "<C-s>"; action = "<cmd>lua require('flash').toggle()<CR>"; mode = "c"; options.desc = "Toggle Flash Search"; }
   ];
   };
 }
