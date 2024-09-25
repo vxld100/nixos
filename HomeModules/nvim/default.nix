@@ -48,6 +48,7 @@
       servers = {
         nixd.enable = true;
         pyright.enable = true;
+	ltex.enable = true;
       };
       preConfig = ''
         vim.fn.sign_define("DiagnosticSignError", { text = "✘", texthl = "DiagnosticSignError" })

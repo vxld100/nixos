@@ -24,6 +24,7 @@
     { key = "<leader>e"; action = ":Neotree toggle<CR>"; mode = "n"; }
     { key = "<leader>x"; action = ":!chmod +x %<CR>"; mode = "n"; }
     { key = "<leader>d"; action = ":lua vim.diagnostic.open_float()<CR>"; mode = "n"; }
+    { key = "<leader>ca"; action = ":lua vim.lsp.buf.code_action()<CR>"; mode = "n"; }
     { key = "Q"; action = "<nop>"; mode = "n"; }
   ];
   };
