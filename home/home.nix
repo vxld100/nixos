@@ -211,12 +211,12 @@
       group = "TexAutoCompile";
     }
     {
-      event = "VimEnter";
+      event = ["BufRead" "BufNewFile"];
       pattern = "*.tex";
       command = "setlocal textwidth=50 | echom \"Set textwidth to 50 for .tex file\"";
     }
     {
-      event = "VimEnter";
+      event = ["BufRead" "BufNewFile"];
       pattern = "*.md";
       command = "setlocal textwidth=50 | echom \"Set textwidth to 50 for .md file\"";
     }
