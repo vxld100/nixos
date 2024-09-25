@@ -4,195 +4,195 @@
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
   ];
-	# Home Manager needs a bit of information about you and the paths it should
-	# manage.
-	home.username = "lilin";
-	home.homeDirectory = "/home/lilin";
-	
-	nixpkgs.config.allowUnfree = true;
+  # Home Manager needs a bit of information about you and the paths it should
+  # manage.
+  home.username = "lilin";
+  home.homeDirectory = "/home/lilin";
 
-	# No idea how to get this to work. Why the fuck is EVERYTHING in nix different?! Can't even declare variables.
-	#systemConfigDirectory = "${home.homeDirectory}/Nixos/system/configuration.nix";
-	#homeConfigDirectory = "${home.homeDirectory}/Nixos/home/home.nix";
+  nixpkgs.config.allowUnfree = true;
 
-	# This value determines the Home Manager release that your configuration is
-	# compatible with. This helps avoid breakage when a new Home Manager release
-	# introduces backwards incompatible changes.
-	#
-	# You should not change this value, even if you update Home Manager. If you do
-	# want to update the value, then make sure to first check the Home Manager
-	# release notes.
-	home.stateVersion = "23.11"; # Please read the comment before changing.
+  # No idea how to get this to work. Why the fuck is EVERYTHING in nix different?! Can't even declare variables.
+  #systemConfigDirectory = "${home.homeDirectory}/Nixos/system/configuration.nix";
+  #homeConfigDirectory = "${home.homeDirectory}/Nixos/home/home.nix";
 
-	# The home.packages option allows you to install Nix packages into your
-	# environment.
-	home.packages = with pkgs; [
-		# # Adds the 'hello' command to your environment. It prints a friendly
-		# # "Hello, world!" when run.
-		# pkgs.hello
+  # This value determines the Home Manager release that your configuration is
+  # compatible with. This helps avoid breakage when a new Home Manager release
+  # introduces backwards incompatible changes.
+  #
+  # You should not change this value, even if you update Home Manager. If you do
+  # want to update the value, then make sure to first check the Home Manager
+  # release notes.
+  home.stateVersion = "23.11"; # Please read the comment before changing.
 
-	 	 # It is sometimes useful to fine-tune packages, for example, by applying
-	 	 # overrides. You can do that directly here, just don't forget the
-	 	 # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-	 	 # fonts?
-	 	 (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+  # The home.packages option allows you to install Nix packages into your
+  # environment.
+  home.packages = with pkgs; [
+  # # Adds the 'hello' command to your environment. It prints a friendly
+  # # "Hello, world!" when run.
+  # pkgs.hello
 
-	 	 # You can also create simple shell scripts directly inside your
-	 	 # configuration. For example, this adds a command 'my-hello' to your
-	 	 # environment:
-	 	# (pkgs.writeShellScriptBin "my-hello" ''
-	 	#   echo "Hello, ${config.home.username}!"
-	 	# '')
-			cliphist
-			wl-clipboard
-			mako
-			fastfetch
-			zathura
-			anki
-			lesspass-cli
-			libreoffice-qt
-			rclone
-			imv
-			nix-output-monitor
-			nh
-			
-			# For screenshots
-			grim
-			slurp
-			imagemagick
+  # It is sometimes useful to fine-tune packages, for example, by applying
+  # overrides. You can do that directly here, just don't forget the
+  # parentheses. Maybe you want to install Nerd Fonts with a limited number of
+  # fonts?
+    (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
 
-			teams-for-linux
-			jellyfin-media-player
+  # You can also create simple shell scripts directly inside your
+  # configuration. For example, this adds a command 'my-hello' to your
+  # environment:
+  # (pkgs.writeShellScriptBin "my-hello" ''
+  #   echo "Hello, ${config.home.username}!"
+  # '')
+      cliphist
+      wl-clipboard
+      mako
+      fastfetch
+      zathura
+      anki
+      lesspass-cli
+      libreoffice-qt
+      rclone
+      imv
+      nix-output-monitor
+      nh
 
-			ffmpeg
-			mpv
-			htop
-			swww
-			gimp
+      # For screenshots
+      grim
+      slurp
+      imagemagick
 
-			unzip
-			zip
-			cheat
-	 	];
+      teams-for-linux
+      jellyfin-media-player
 
-		# Home Manager is pretty good at managing dotfiles. The primary way to manage
-		# plain files is through 'home.file'.
-	home.file = {
-		# # Building this configuration will create a copy of 'dotfiles/screenrc' in
-	 	# # the Nix store. Activating the configuration will then make '~/.screenrc' a
-	 	# # symlink to the Nix store copy.
-	 	# ".screenrc".source = dotfiles/screenrc;
+      ffmpeg
+      mpv
+      htop
+      swww
+      gimp
 
-	 	# # You can also set the file content immediately.
-	 	# ".gradle/gradle.properties".text = ''
-	 	#   org.gradle.console=verbose
-	 	#   org.gradle.daemon.idletimeout=3600000
-	 	# '';
-	};
+      unzip
+      zip
+      cheat
 
-	# Home Manager can also manage your environment variables through
-	# 'home.sessionVariables'. If you don't want to manage your shell through Home
-	# Manager then you have to manually source 'hm-session-vars.sh' located at
-	# either
-	#
-	#  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-	#
-	# or
-	#
-	#  /etc/profiles/per-user/lilin/etc/profile.d/hm-session-vars.sh
-	#
-	# Note that this works only when home manager is managing the shell. Otherwise any such variables have to be set somewhere else
-	home.sessionVariables = {
-	 	#EDITOR = "nvim";
-	 	#SUDO_EDITOR = "nvim";
-	 	WLR_NO_HARDWARE_CURSORS=1; # This way the cursor is not invisible on wayland
-	};
+      texliveFull
+      ];
 
-	programs.direnv = {
-		enable = true;
-		enableBashIntegration = true; # see note on other shells below
-		nix-direnv.enable = true;
-	};
+  # Home Manager is pretty good at managing dotfiles. The primary way to manage
+  # plain files is through 'home.file'.
+  home.file = {
+  # # Building this configuration will create a copy of 'dotfiles/screenrc' in
+  # # the Nix store. Activating the configuration will then make '~/.screenrc' a
+  # # symlink to the Nix store copy.
+  # ".screenrc".source = dotfiles/screenrc;
 
-	programs.zsh = {
-		enable = true;
-		autocd = true;
-		defaultKeymap = "viins";
+  # # You can also set the file content immediately.
+  # ".gradle/gradle.properties".text = ''
+  #   org.gradle.console=verbose
+  #   org.gradle.daemon.idletimeout=3600000
+  # '';
+  };
 
-		shellAliases = {
-			ll = "ls -Alhp";
-			la = "ls -Ahp";
-			rg = "ranger";
-			vim = "nvim $1";
-			down = "shutdown 0";
-			sync = "rclone bisync ~/Uni pcloud:/Uni --verbose;\
-					  rclone bisync ~/Documents pcloud:/Documents --verbose;";
+  # Home Manager can also manage your environment variables through
+  # 'home.sessionVariables'. If you don't want to manage your shell through Home
+  # Manager then you have to manually source 'hm-session-vars.sh' located at
+  # either
+  #
+  #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
+  #
+  # or
+  #
+  #  /etc/profiles/per-user/lilin/etc/profile.d/hm-session-vars.sh
+  #
+  # Note that this works only when home manager is managing the shell. Otherwise any such variables have to be set somewhere else
+  home.sessionVariables = {
+    WLR_NO_HARDWARE_CURSORS=1; # This way the cursor is not invisible on wayland
+  };
 
-			update = "nh os switch \"$HOME/NixOS\" -- --impure";
-			home = "nh home switch \"$HOME/NixOS\"";
-		};
+  programs.direnv = {
+    enable = true;
+    enableBashIntegration = true; # see note on other shells below
+      nix-direnv.enable = true;
+  };
 
-		syntaxHighlighting = {
-			enable = true;
-			styles = {
-				command = "none";
-				alias = "none";
-				builtin = "none";
-				precommand = "fg=magenta,bold";
-				function = "fg=magenta";
-				unknown-token = "fg=red";
-			};
-		};
+  programs.zsh = {
+    enable = true;
+    autocd = true;
+    defaultKeymap = "viins";
 
-	};
+    shellAliases = {
+      ll = "ls -Alhp";
+      la = "ls -Ahp";
+      rg = "ranger";
+      vim = "nvim $1";
+      down = "shutdown 0";
+      sync = "rclone bisync ~/Uni pcloud:/Uni --verbose;\
+	      rclone bisync ~/Documents pcloud:/Documents --verbose;";
+
+      update = "nh os switch \"$HOME/NixOS\" -- --impure";
+      home = "nh home switch \"$HOME/NixOS\"";
+    };
+
+    syntaxHighlighting = {
+      enable = true;
+      styles = {
+	command = "none";
+	alias = "none";
+	builtin = "none";
+	precommand = "fg=magenta,bold";
+	function = "fg=magenta";
+	unknown-token = "fg=red";
+      };
+    };
+
+  };
 
 
-	programs.git = {
-	 	enable = true;
-	 	userName  = "Lilin";
-	 	userEmail = "vxld100@tuta.io";
-	};
+  programs.git = {
+    enable = true;
+    userName  = "Lilin";
+    userEmail = "vxld100@tuta.io";
+  };
 
-	gtk = {
-	  enable = true;
-	  cursorTheme.package = pkgs.quintom-cursor-theme;
-	  cursorTheme.name = "Quintom_Ink";
-	};
+  gtk = {
+    enable = true;
+    cursorTheme.package = pkgs.quintom-cursor-theme;
+    cursorTheme.name = "Quintom_Ink";
+  };
 
-	home.pointerCursor = {
-	  gtk.enable = true;
-	
-	  package = pkgs.quintom-cursor-theme;
-	  name = "Quintom_Ink";
-	};
+  home.pointerCursor = {
+    gtk.enable = true;
 
-	xdg.desktopEntries."com.github.iwalton3.jellyfin-media-player" = {
-     name = "Jellyfin Media Player";
-     comment = "Desktop client for Jellyfin";
-     exec = "jellyfinmediaplayer --scale-factor 2";
-     icon = "com.github.iwalton3.jellyfin-media-player";
-     terminal = false;
-     type = "Application";
-     categories = [ "AudioVideo" "Video" "Player" "TV" ];
-     actions = {
-       "DesktopF" = {
-         name = "Desktop [Fullscreen]";
-         exec = "jellyfinmediaplayer --fullscreen --desktop --scale-factor 2";
-       };
-       "DesktopW" = {
-         name = "Desktop [Windowed]";
-         exec = "jellyfinmediaplayer --windowed --desktop --scale-factor 2";
-       };
-       "TVF" = {
-         name = "TV [Fullscreen]";
-         exec = "jellyfinmediaplayer --fullscreen --tv --scale-factor 2";
-       };
-       "TVW" = {
-         name = "TV [Windowed]";
-         exec = "jellyfinmediaplayer --windowed --tv --scale-factor 2";
-       };
-     };
-   };
+    package = pkgs.quintom-cursor-theme;
+    name = "Quintom_Ink";
+  };
+
+  xdg.desktopEntries."com.github.iwalton3.jellyfin-media-player" = {
+    name = "Jellyfin Media Player";
+    comment = "Desktop client for Jellyfin";
+    exec = "jellyfinmediaplayer --scale-factor 2";
+    icon = "com.github.iwalton3.jellyfin-media-player";
+    terminal = false;
+    type = "Application";
+    categories = [ "AudioVideo" "Video" "Player" "TV" ];
+    actions = {
+      "DesktopF" = {
+	name = "Desktop [Fullscreen]";
+	exec = "jellyfinmediaplayer --fullscreen --desktop --scale-factor 2";
+      };
+      "DesktopW" = {
+	name = "Desktop [Windowed]";
+	exec = "jellyfinmediaplayer --windowed --desktop --scale-factor 2";
+      };
+      "TVF" = {
+	name = "TV [Fullscreen]";
+	exec = "jellyfinmediaplayer --fullscreen --tv --scale-factor 2";
+      };
+      "TVW" = {
+	name = "TV [Windowed]";
+	exec = "jellyfinmediaplayer --windowed --tv --scale-factor 2";
+      };
+    };
+  };
 
   programs.nixvim = {
     enable = true;
@@ -204,25 +204,25 @@
     };
 
     autoCmd = [
-      {
-        event = "BufWritePost";
-        pattern = "*.tex";
-        command = "silent !xelatex \"%:p\" && cp \"%:r.pdf\" \"$(dirname \"%:p\")/..\"";
-        group = "TexAutoCompile";
-      }
-      {
-        event = "VimEnter";
-        pattern = "*.tex";
-        command = "setlocal textwidth=50 | echom \"Set textwidth to 50 for .tex file\"";
-      }
-      {
-        event = "VimEnter";
-        pattern = "*.md";
-        command = "setlocal textwidth=50 | echom \"Set textwidth to 50 for .md file\"";
-      }
+    {
+      event = "BufWritePost";
+      pattern = "*.tex";
+      command = "silent !xelatex \"%:p\" && cp \"%:r.pdf\" \"$(dirname \"%:p\")/..\"";
+      group = "TexAutoCompile";
+    }
+    {
+      event = "VimEnter";
+      pattern = "*.tex";
+      command = "setlocal textwidth=50 | echom \"Set textwidth to 50 for .tex file\"";
+    }
+    {
+      event = "VimEnter";
+      pattern = "*.md";
+      command = "setlocal textwidth=50 | echom \"Set textwidth to 50 for .md file\"";
+    }
     ];
   };
 
-	# Let Home Manager install and manage itself.
-	programs.home-manager.enable = true;
+  # Let Home Manager install and manage itself.
+  programs.home-manager.enable = true;
 }
