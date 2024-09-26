@@ -207,7 +207,7 @@
     {
       event = "BufWritePost";
       pattern = "*.tex";
-      command = "silent !xelatex \"%:p\" && cp \"%:r.pdf\" \"$(dirname \"%:p\")/..\"";
+      command = "silent !cd \"%:p:h\" && xelatex \"%:t\" && cp \"%:t:r.pdf\" \"..\"";
       group = "TexAutoCompile";
     }
     {
