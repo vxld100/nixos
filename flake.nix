@@ -10,44 +10,44 @@
       url = "github:tpwrules/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-	 stylix = {
-	   url = "github:danth/stylix";
-		inputs.nixpkgs.follows = "nixpkgs";
-	 };
-	 nixvim = {
-	   url = "github:nix-community/nixvim";
-		inputs.nixpkgs.follows = "nixpkgs";
-	 };
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, apple-silicon-support, home-manager, nixvim, ... }@inputs: 
-  let
+    let
     system = "aarch64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
+  pkgs = nixpkgs.legacyPackages.${system};
   in
   {
     nixosConfigurations = {
       asahi = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = { inherit inputs; };
-        modules = [
-          ./system/configuration.nix
-			 /home/lilin/NixOS/secrets/eduroam.nix
-          apple-silicon-support.nixosModules.default
-			 inputs.stylix.nixosModules.stylix
-        ];
+	inherit system;
+	specialArgs = { inherit inputs; };
+	modules = [
+	  ./system/configuration.nix
+	    /home/lilin/NixOS/secrets/eduroam.nix
+	    apple-silicon-support.nixosModules.default
+	    inputs.stylix.nixosModules.stylix
+	];
       };
     };
 
     homeConfigurations = {
       lilin = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-		  extraSpecialArgs = { inherit inputs; };
-        modules = [
-          ./home/home.nix
-			 ./HomeModules/oh-my-posh.nix
-			 ./HomeModules/nvim
-        ];
+	inherit pkgs;
+	extraSpecialArgs = { inherit inputs; };
+	modules = [
+	  ./home/home.nix
+	  ./HomeModules/oh-my-posh.nix
+	  ./HomeModules/nvim
+	];
       };
     };
   };

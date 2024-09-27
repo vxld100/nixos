@@ -29,7 +29,7 @@
             on_press = "<cmd>lua new_file()<CR>";
             opts = {
               position = "center";
-              shortcut = "e";
+              shortcut = "SPC e";
               cursor = 3;
               width = 50;
               align_shortcut = "right";
@@ -133,7 +133,7 @@
   };
 
   extraConfigLua = ''
-    vim.api.nvim_set_keymap('n', 'e', ':lua new_file()<CR>', {noremap = true, silent = true})
+    vim.api.nvim_set_keymap('n', '<leader>e', ':lua new_file()<CR>', {noremap = true, silent = true})
 
     function new_file()
       vim.cmd('enew')

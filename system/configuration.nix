@@ -213,22 +213,29 @@
   };
 
   services = {
-      jellyfin = { enable = true; group = "multimedia"; };
-      sonarr = { enable = true; group = "multimedia"; };
-      radarr = { enable = true; group = "multimedia"; };
-      lidarr = { enable = true; group = "multimedia"; };
-		prowlarr = { enable = true; };
-		transmission = {
-			enable = true;
-			package = pkgs.transmission_4;
-			group = "multimedia";
-			settings = {
-			  download-dir = "/media/downloads/unsorted";
-			  incomplete-dir = "/media/downloads/processing";
-			  incomplete-dir-enabled = true;
-			};
-		};
-	};
+    jellyfin = { enable = true; group = "multimedia"; };
+    sonarr = { enable = true; group = "multimedia"; };
+    radarr = { enable = true; group = "multimedia"; };
+    lidarr = { enable = true; group = "multimedia"; };
+    prowlarr = { enable = true; };
+    transmission = {
+      enable = true;
+      package = pkgs.transmission_4;
+      group = "multimedia";
+      settings = {
+	download-dir = "/media/downloads/unsorted";
+	incomplete-dir = "/media/downloads/processing";
+	incomplete-dir-enabled = true;
+      };
+    };
+  };
+
+  systemd.services.transmission = {
+    wantedBy = lib.mkForce [];
+    serviceConfig = {
+      RemainAfterExit = lib.mkForce false;
+    };
+  };
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
