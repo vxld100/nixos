@@ -133,7 +133,7 @@
   };
 
   extraConfigLua = ''
-    vim.api.nvim_set_keymap('n', '<leader>e', ':lua new_file()<CR>', {noremap = true, silent = true})
+    vim.api.nvim_set_keymap('n', '<leader>fe', ':lua new_file()<CR>', {noremap = true, silent = true})
 
     function new_file()
       vim.cmd('enew')
