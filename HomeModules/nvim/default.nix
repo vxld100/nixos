@@ -14,6 +14,7 @@
     lualine.enable = true;
     cmp_luasnip.enable = true;
     luasnip.enable = true;
+    friendly-snippets.enable = true;
     nvim-autopairs.enable = true;
     flash.enable = true;
     #barbecue.enable = true;
@@ -54,7 +55,6 @@
         nixd.enable = true;
         pyright.enable = true;
 	ltex.enable = true;
-	r-language-server.enable = true;
       };
       preConfig = ''
         vim.fn.sign_define("DiagnosticSignError", { text = "✘", texthl = "DiagnosticSignError" })
