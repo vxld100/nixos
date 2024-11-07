@@ -7,17 +7,29 @@
     ./onedark.nix
     ./alpha.nix
     ./neo-tree.nix
+    #./extra.nix
   ];
   programs.nixvim = {
 
   plugins = {
     lualine.enable = true;
     cmp_luasnip.enable = true;
-    luasnip.enable = true;
-    friendly-snippets.enable = true;
+    #friendly-snippets.enable = true;
     nvim-autopairs.enable = true;
     flash.enable = true;
+    cmp-latex-symbols.enable = true;
     #barbecue.enable = true;
+
+    luasnip = {
+      enable = true;
+      fromSnipmate = [
+      {
+	paths = ./snippets;
+	exclude = [ "all" ];
+	lazyLoad = true;
+      }
+      ];
+    };
 
     treesitter = {
       enable = true;
