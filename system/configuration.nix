@@ -220,7 +220,7 @@
     lidarr = { enable = true; group = "multimedia"; };
     prowlarr = { enable = true; };
     transmission = {
-      enable = true;
+      enable = false;
       package = pkgs.transmission_4;
       group = "multimedia";
       settings = {
@@ -231,12 +231,6 @@
     };
   };
 
-  systemd.services.transmission = {
-    wantedBy = lib.mkForce [];
-    serviceConfig = {
-      RemainAfterExit = lib.mkForce false;
-    };
-  };
 
 # This option defines the first version of NixOS you have installed on this particular machine,
 # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
