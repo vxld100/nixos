@@ -63,6 +63,7 @@
 
       teams-for-linux
       jellyfin-media-player
+      thunderbird
 
       ffmpeg
       mpv
@@ -75,6 +76,7 @@
       cheat
 
       texliveFull
+      texlivePackages.moderncv
       ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
