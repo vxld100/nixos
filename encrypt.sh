@@ -35,7 +35,7 @@ else
 fi
 
 # Expected SHA256 hash of the password
-expected_hash="b57d28f4b02558146ffa1b27d84a84e30c9aa29cac9ea1ad0eb9b999f0ca9eb9"
+expected_hash="3c72bc9ba880b03304eecfd837d5fdbdd68f53660db8bbf42e9c368b4a13b270"
 
 # Calculate the SHA256 hash of the generated password
 actual_hash=$(echo -n "$nixos_password" | sha256sum | awk '{print $1}')
