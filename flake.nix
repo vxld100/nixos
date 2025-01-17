@@ -18,9 +18,10 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
   };
 
-  outputs = { self, nixpkgs, apple-silicon-support, home-manager, nixvim, ... }@inputs: 
+  outputs = { self, nixpkgs, apple-silicon-support, home-manager, nixvim, zen-browser,... }@inputs: 
     let
     system = "aarch64-linux";
   pkgs = nixpkgs.legacyPackages.${system};
@@ -31,7 +32,7 @@
 	inherit system;
 	specialArgs = { inherit inputs; };
 	modules = [
-	  ./system/configuration.nix
+	  ./system/asahi.nix
 	    /home/lilin/NixOS/secrets/eduroam.nix
 	    apple-silicon-support.nixosModules.default
 	    inputs.stylix.nixosModules.stylix

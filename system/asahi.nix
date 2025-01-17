@@ -190,7 +190,7 @@
       curl
       firefox
       alacritty
-      ranger
+      yazi
       dolphin
       git
       networkmanagerapplet

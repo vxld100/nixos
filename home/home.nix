@@ -60,10 +60,12 @@
       grim
       slurp
       imagemagick
+      yazi
 
       teams-for-linux
       jellyfin-media-player
       thunderbird
+      yt-dlp
 
       ffmpeg
       mpv
@@ -77,6 +79,9 @@
 
       texliveFull
       texlivePackages.moderncv
+
+      inputs.zen-browser.packages."${system}".default
+      pywalfox-native
       ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -124,7 +129,7 @@
     shellAliases = {
       ll = "ls -Alhp";
       la = "ls -Ahp";
-      rg = "ranger";
+      rg = "yazi";
       vim = "nvim $1";
       down = "shutdown 0";
       sync = "rclone bisync ~/Uni pcloud:/Uni --verbose;\
