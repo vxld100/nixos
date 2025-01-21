@@ -18,10 +18,9 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    zen-browser.url = "github:0xc000022070/zen-browser-flake";
   };
 
-  outputs = { self, nixpkgs, apple-silicon-support, home-manager, nixvim, zen-browser,... }@inputs: 
+  outputs = { self, nixpkgs, apple-silicon-support, home-manager, nixvim, ... }@inputs: 
     let
     system = "aarch64-linux";
   pkgs = nixpkgs.legacyPackages.${system};

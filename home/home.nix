@@ -80,7 +80,6 @@
       texliveFull
       texlivePackages.moderncv
 
-      inputs.zen-browser.packages."${system}".default
       pywalfox-native
       ];
 
