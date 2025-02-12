@@ -47,6 +47,7 @@
 	  ./home/home.nix
 	  ./HomeModules/oh-my-posh.nix
 	  ./HomeModules/hyprland.nix
+	  ./HomeModules/alacritty.nix
 	  ./HomeModules/nvim
 	];
       };
