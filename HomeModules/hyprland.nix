@@ -29,10 +29,13 @@
       };
 
       decoration = {
-        rounding = 10;
-        drop_shadow = true;
-        shadow_render_power = 3;
-        "col.shadow" = "rgba(1a1a1aee)";
+	rounding = 10;
+	
+	shadow = {
+	  enabled = true;
+	  render_power = 3;
+	  color = "rgba(1a1a1aee)";
+	};
 
         blur = {
           enabled = true;

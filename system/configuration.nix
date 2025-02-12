@@ -100,10 +100,6 @@
 #  useXkbConfig = true; # use xkb.options in tty.
 #};
 
-  fonts.packages = with pkgs; [
-    nerdfonts
-  ];
-
 # Enable Hyprland and the X11 windowing system.
   programs.hyprland = {
     enable = true;

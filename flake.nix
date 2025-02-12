@@ -10,10 +10,6 @@
       url = "github:tpwrules/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    stylix = {
-      url = "github:danth/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -34,7 +30,6 @@
 	  ./system/configuration.nix
 	    /home/lilin/NixOS/secrets/eduroam.nix
 	    apple-silicon-support.nixosModules.default
-	    inputs.stylix.nixosModules.stylix
 	];
       };
     };
