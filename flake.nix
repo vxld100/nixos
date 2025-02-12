@@ -31,7 +31,7 @@
 	inherit system;
 	specialArgs = { inherit inputs; };
 	modules = [
-	  ./system/asahi.nix
+	  ./system/configuration.nix
 	    /home/lilin/NixOS/secrets/eduroam.nix
 	    apple-silicon-support.nixosModules.default
 	    inputs.stylix.nixosModules.stylix
@@ -46,6 +46,7 @@
 	modules = [
 	  ./home/home.nix
 	  ./HomeModules/oh-my-posh.nix
+	  ./HomeModules/hyprland.nix
 	  ./HomeModules/nvim
 	];
       };
