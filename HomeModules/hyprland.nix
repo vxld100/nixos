@@ -5,7 +5,7 @@
       "monitor" = ",preferred,auto,1";
 
       exec-once = [
-        "waybar"
+        "pkill waybar; waybar"
         "bluetoothctl power off"
         "systemctl stop transmission.service"
         "nm-applet"
@@ -163,8 +163,10 @@
         "$mainMod, i, exec, ~/.config/hypr/scripts/wallpaper.sh"
         ", XF86AudioMute, exec, ~/.config/hypr/scripts/volumecontrol.sh -o m"
         ", XF86AudioMicMute, exec, ~/.config/hypr/scripts/volumecontrol.sh -i m"
-        "$mainMod, XF86MonBrightnessUp, exec, xbacklight -ctrl kbd_backlight -inc 25"
-        "$mainMod, XF86MonBrightnessDown, exec, xbacklight -ctlr kbd_backlight -dec 25"
+        "$mainMod, XF86MonBrightnessUp, exec, brightnessctl -d 'kbd_backlight' set +20"
+        "$mainMod, XF86MonBrightnessDown, exec, brightnessctl -d 'kbd_backlight' set 20-"
+        ", XF86MonBrightnessUp, exec, brightnessctl set +50"
+        ", XF86MonBrightnessDown, exec, brightnessctl set 50-"
       ];
     };
   };
