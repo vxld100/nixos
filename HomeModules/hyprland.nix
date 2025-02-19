@@ -5,7 +5,6 @@
       "monitor" = ",preferred,auto,1";
 
       exec-once = [
-        "pkill waybar; waybar"
         "bluetoothctl power off"
         "systemctl stop transmission.service"
         "nm-applet"
