@@ -3,9 +3,18 @@
     enable = true;
     enableZshIntegration = true;
     settings = {
-      preview = {
-	max_width = true;
+      opener = {
+        imv = [{ run = "imv \"$@\""; }];
+        zathura = [{ run = "zathura \"$@\""; }];
+      };
+      open = {
+	prepend_rules = [
+	  { name = "*.pdf"; use = "zathura"; }
+	  { name = "*.jpg"; use = "imv"; }
+	  { name = "*.png"; use = "imv"; }
+	];
       };
     };
   };
 }
+

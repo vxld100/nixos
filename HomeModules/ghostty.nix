@@ -11,6 +11,9 @@
       background = "#0b0c0d";
       foreground = "#f0f0f0";
 
+      confirm-close-surface = false;
+      resize-overlay = "never";
+
       background-opacity = 0.7;
       background-blur = true;
 

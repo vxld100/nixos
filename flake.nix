@@ -44,6 +44,7 @@
 	  ./HomeModules/hyprland.nix
 	  ./HomeModules/alacritty.nix
 	  ./HomeModules/ghostty.nix
+	  ./HomeModules/yazi.nix
 	  ./HomeModules/nvim
 	];
       };
