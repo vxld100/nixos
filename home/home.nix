@@ -62,6 +62,10 @@
       slurp
       imagemagick
       yazi
+      eza
+      fzf
+      csvlens
+      rip2
 
       teams-for-linux
       jellyfin-media-player
@@ -127,10 +131,12 @@
     defaultKeymap = "viins";
 
     shellAliases = {
-      ll = "ls -Alhp";
-      la = "ls -Ahp";
+      ll = "eza -Alh --icons=always";
+      l = "eza -alh --icons=always";
+      la = "eza -A --icons=always";
       rg = "yazi";
       vim = "nvim $1";
+      csv = "csvlens";
       down = "shutdown 0";
       sync = "rclone bisync ~/Uni pcloud:/Uni --verbose;\
 	      rclone bisync ~/Documents pcloud:/Documents --verbose;";

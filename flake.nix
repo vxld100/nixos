@@ -45,6 +45,7 @@
 	  ./HomeModules/alacritty.nix
 	  ./HomeModules/ghostty.nix
 	  ./HomeModules/yazi.nix
+	  ./HomeModules/zoxide.nix
 	  ./HomeModules/nvim
 	];
       };
