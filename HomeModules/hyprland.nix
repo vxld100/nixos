@@ -103,11 +103,11 @@
       "$ModCtrl" = "SUPERCTRL";
 
       bind = [
-        "$mainMod, Return, exec, alacritty"
+        "$mainMod, Return, exec, ghostty"
         "$mainMod, C, killactive, "
         "$ModShift, Q, exit, "
-        "$mainMod, E, exec, alacritty --hold -e ranger ~"
-        "$mainMod, R, exec, alacritty --hold -e ranger ~/Uni"
+        "$mainMod, E, exec, ghostty -e yazi ~"
+        "$mainMod, R, exec, ghostty -e yazi ~/Uni"
         "$mainMod, V, togglefloating, "
         "$mainMod, S, exec, wofi --show=drun -i --matchin=fuzzy --normal-window --prompt=\"Choose application to run\""
         "$mainMod, P, pseudo, "
