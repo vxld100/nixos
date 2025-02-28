@@ -64,6 +64,8 @@
       yazi
       eza
       fzf
+      bat
+      zsh-fzf-tab
       csvlens
       rip2
 
@@ -134,6 +136,7 @@
       ll = "eza -Alh --icons=always";
       l = "eza -alh --icons=always";
       la = "eza -A --icons=always";
+      cat = "bat";
       rg = "yazi";
       vim = "nvim $1";
       csv = "csvlens";
@@ -156,6 +159,9 @@
 	unknown-token = "fg=red";
       };
     };
+
+    initExtra = "autoload -U compinit; compinit
+		 source ~/NixOS/HomeModules/fzf-tab/fzf-tab.plugin.zsh";
 
   };
 
