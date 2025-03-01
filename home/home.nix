@@ -133,6 +133,7 @@
     defaultKeymap = "viins";
 
     shellAliases = {
+      ls = "eza --icons=always";
       ll = "eza -Alh --icons=always";
       l = "eza -alh --icons=always";
       la = "eza -A --icons=always";

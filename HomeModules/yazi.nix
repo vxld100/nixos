@@ -4,14 +4,16 @@
     enableZshIntegration = true;
     settings = {
       opener = {
-        imv = [{ run = "imv \"$@\""; }];
-        zathura = [{ run = "zathura \"$@\""; }];
+        imv = [{ run = "setsid -f imv \"$@\""; }];
+        zathura = [{ run = "setsid -f zathura \"$@\""; }];
+        csvlens = [{ run = "setsid -f ghostty -e csvlens \"\'$0\'\""; }];
       };
       open = {
 	prepend_rules = [
 	  { name = "*.pdf"; use = "zathura"; }
 	  { name = "*.jpg"; use = "imv"; }
 	  { name = "*.png"; use = "imv"; }
+	  { name = "*.csv"; use = "csvlens"; }
 	];
       };
     };
