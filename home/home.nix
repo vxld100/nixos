@@ -67,7 +67,7 @@
       bat
       zsh-fzf-tab
       csvlens
-      rip2
+      gtrash
 
       teams-for-linux
       jellyfin-media-player
