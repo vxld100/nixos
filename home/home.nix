@@ -137,6 +137,9 @@
       ll = "eza -Alh --icons=always";
       l = "eza -alh --icons=always";
       la = "eza -A --icons=always";
+      gp = "gtrash put";
+      gf = "gtrash find";
+      gr = "gtrash restore";
       cat = "bat";
       rg = "yazi";
       vim = "nvim $1";
