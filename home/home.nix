@@ -165,7 +165,9 @@
     };
 
     initExtra = "autoload -U compinit; compinit
-		 source ~/NixOS/HomeModules/fzf-tab/fzf-tab.plugin.zsh";
+		 source ~/NixOS/HomeModules/fzf-tab/fzf-tab.plugin.zsh
+		 bindkey \"^H\" backward-delete-char
+		 bindkey \"^?\" backward-delete-char";
 
   };
 
