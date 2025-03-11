@@ -144,7 +144,7 @@
         "$mainMod, mouse_up, workspace, e-1"
         "$mainMod, Tab, workspace, previous"
         "$ModCtrl, L, exec, swaylock -c 000000"
-        "$mainMod, W, exec, brave --force-device-scale-factor=2 --enable-features=BatterySaver --enable-tab-discarding --disable-background-networking"
+        "$mainMod, W, exec, brave --force-device-scale-factor=2 --enable-features=BatterySaver --enable-tab-discarding --disable-background-networking --password-store=basic"
       ];
 
       bindm = [

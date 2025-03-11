@@ -112,8 +112,8 @@
     enable = true;
     extraPortals = with pkgs; [
       xdg-desktop-portal-wlr
-	xdg-desktop-portal-kde
-	xdg-desktop-portal-gtk
+      xdg-desktop-portal-hyprland
+      xdg-desktop-portal-gtk
     ];
   };
 
@@ -180,7 +180,7 @@
       brave
       alacritty
       yazi
-      dolphin
+      kdePackages.dolphin
       git
       networkmanagerapplet
       wofi
