@@ -85,6 +85,7 @@
 	  };
           modules = [
             ./home/erebos/home.nix
+            ./HomeModules/hyprland.nix
             ./HomeModules/oh-my-posh.nix
             ./HomeModules/ghostty.nix
             ./HomeModules/yazi.nix

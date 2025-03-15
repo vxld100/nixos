@@ -40,10 +40,27 @@
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
 
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
+
+  programs.waybar.enable = true;
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-wlr
+      xdg-desktop-portal-hyprland
+      xdg-desktop-portal-gtk
+    ];
+  };
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "ch";
     variant = "legacy";
+    options = "altwin:swap_alt_win";
   };
 
   # Configure console keymap
@@ -71,6 +88,7 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  services.libinput.enable = true;
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
 
@@ -98,6 +116,9 @@
     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     nh
     git
+    brave 
+    networkmanagerapplet
+    wofi
   #  wget
   ];
 
