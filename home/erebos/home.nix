@@ -111,6 +111,15 @@
     userEmail = "erebos@datacenter.com";  # Replace with actual email
   };
 
+  # Custom only for this machine
+  wayland.windowManager.hyprland = {
+    settings = {
+      input = {
+        kb_options = lib.mkForce "grp:alt_shift_toggle, altwin:swap_alt_win";
+      };
+    };
+  };
+
 
   programs.nixvim = {
     enable = true;
