@@ -121,6 +121,8 @@
     WLR_NO_HARDWARE_CURSORS=1; # This way the cursor is not invisible on wayland
   };
 
+  programs.waybar.enable = true;
+
   programs.direnv = {
     enable = true;
     enableZshIntegration = true; # see note on other shells below
