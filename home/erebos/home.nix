@@ -115,7 +115,7 @@
   wayland.windowManager.hyprland = {
     settings = {
       input = {
-        kb_options = lib.mkForce "grp:alt_shift_toggle, altwin:swap_alt_win";
+        kb_options = lib.mkForce "grp:alt_shift_toggle, altwin:swap_lalt_lwin";
       };
     };
   };
