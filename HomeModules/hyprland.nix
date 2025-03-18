@@ -76,7 +76,8 @@
       };
 
       gestures = {
-        workspace_swipe = "off";
+        workspace_swipe = true;
+	workspace_swipe_min_speed_to_force = 10;
       };
 
       input = {
