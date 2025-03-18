@@ -51,6 +51,9 @@
     # Monitoring and management
     nix-output-monitor
     nh
+
+    cliphist
+    wl-clipboard
   ];
 
   programs.direnv = {

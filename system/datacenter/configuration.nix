@@ -34,7 +34,22 @@
 
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
-  services.xserver.enable = true;
+  services.xserver = {
+    enable = true;
+    videoDrivers = [ "nvidia" ];
+  };
+
+  hardware.nvidia = {
+    open = false;
+    nvidiaSettings = true;
+    modesetting.enable = true;
+    prime= {
+      intelBusId = "PCI:0:2:0";
+      nvidiaBusId = "PCI:1:0:0";
+      offload.enable = true;
+      offload.enableOffloadCmd = true;
+    };
+  };
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
@@ -98,11 +113,11 @@
     description = "erebos";
     extraGroups = [ "networkmanager" "wheel" ];
     shell = pkgs.zsh;
-    packages = with pkgs; [
-      kdePackages.kate
-    #  thunderbird
-    ];
   };
+
+  nix.settings = {
+    trusted-users = [ "root"  "@wheel" ];
+  } ;
 
   # Install firefox.
   programs.firefox.enable = true;
@@ -119,6 +134,10 @@
     brave 
     networkmanagerapplet
     wofi
+
+    devenv
+
+    cudatoolkit
   #  wget
   ];
 
