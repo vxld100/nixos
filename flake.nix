@@ -17,6 +17,11 @@
       url = "github:tpwrules/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    mesa-fix = {
+      url = "github:Lederstrumpf/nixos-apple-silicon/mesa-changes";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -25,7 +30,7 @@
 
   outputs = { self, nixpkgs-unstable, nixpkgs-stable, 
            home-manager-unstable, home-manager-stable, 
-           apple-silicon-support, nixvim, ... }@inputs: 
+           apple-silicon-support, mesa-fix, nixvim, ... }@inputs: 
 
     let
       aarch64System = "aarch64-linux";
@@ -48,7 +53,7 @@
           modules = [
             ./system/configuration.nix
             /home/lilin/NixOS/secrets/eduroam.nix
-            apple-silicon-support.nixosModules.default
+            mesa-fix.nixosModules.default
           ];
         };
         datacenter = nixpkgs-stable.lib.nixosSystem {

@@ -8,7 +8,7 @@
   imports =
     [
     ./hardware-configuration.nix
-      inputs.apple-silicon-support.nixosModules.apple-silicon-support
+      inputs.mesa-fix.nixosModules.apple-silicon-support
 #./../secrets/eduroam.nix
     ];
 
@@ -26,6 +26,7 @@
     };
     settings = {
       experimental-features = [ "nix-command" "flakes" ];  # Added this line
+      trusted-users = [ "root" "@wheel" ];
     };
   };
 
