@@ -68,6 +68,7 @@
       zsh-fzf-tab
       csvlens
       gtrash
+      devenv
 
       teams-for-linux
       jellyfin-media-player
