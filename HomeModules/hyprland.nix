@@ -11,7 +11,7 @@
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type image --watch cliphist store"
         "swww init"
-        "mako"
+        "swaync"
       ];
 
       exec = "hyprpaper";
@@ -154,7 +154,8 @@
       ];
 
       binde = [
-        "$mainMod, y, exec, grim -g \"$(slurp)\" - | convert - -shave 1x1 PNG:- | wl-copy"
+        "$mainMod, y, exec, hyprshot -m region --clipboard-only"
+        "$ModShift, y, exec, hyprshot -m region -o ~/Pictures"
         ", XF86AudioLowerVolume, exec, ~/.config/hypr/scripts/volumecontrol.sh -o d"
         ", XF86AudioRaiseVolume, exec, ~/.config/hypr/scripts/volumecontrol.sh -o i"
         "$ModShift, o, exec, ~/.config/hypr/scripts/volumecontrol.sh -o d"
