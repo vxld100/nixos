@@ -59,6 +59,7 @@
 
       # For screenshots
       hyprshot
+      pulseaudio
       #grim
       #slurp
       #imagemagick
