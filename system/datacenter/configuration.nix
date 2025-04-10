@@ -148,6 +148,8 @@
     networkmanagerapplet
     wofi
 
+    swaylock
+
     devenv
 
     cudatoolkit
