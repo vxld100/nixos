@@ -46,7 +46,7 @@
       nerd-fonts.jetbrains-mono
       cliphist
       wl-clipboard
-      mako
+      #mako
       fastfetch
       zathura
       anki
@@ -58,9 +58,12 @@
       nh
 
       # For screenshots
-      grim
-      slurp
-      imagemagick
+      hyprshot
+      pulseaudio
+      #grim
+      #slurp
+      #imagemagick
+
       yazi
       eza
       fzf
@@ -123,6 +126,8 @@
   };
 
   programs.waybar.enable = true;
+
+  services.swaync.enable = true;
 
   programs.direnv = {
     enable = true;

@@ -145,11 +145,24 @@
     pulse.enable = true;
 # If you want to use JACK applications, uncomment this
 #jack.enable = true;
+    extraConfig.pipewire = {
+      "context.properties" = {
+	"default.clock.rate" = 48000;
+	"default.clock.quantum" = 1024;
+	"default.clock.min-quantum" = 1024;
+      };
+      "stream.properties" = {
+	"node.latency" = "1024/48000";
+      };
+    };
     wireplumber.extraConfig.bluetoothEnhancements = {
       "monitor.bluez.properties" = {
 	"bluez5.a2dp.aac.bitratemode" = "0";  # 0 = constant bitrate
-	  "bluez5.a2dp.aac.bitrate" = "320000";  # 320kbps
-	  "bluez5.a2dp.aac.quality" = "7";  # Highest quality setting
+	"bluez5.a2dp.aac.bitrate" = "256000";
+	"bluez5.a2dp.aac.quality" = "5";
+	# Add buffer settings
+	"bluez5.headset-buffer-time" = "128";
+	"bluez5.headset-period-time" = "32";
       };
     };
   };
