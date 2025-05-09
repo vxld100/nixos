@@ -8,7 +8,7 @@
   imports =
     [
     ./hardware-configuration.nix
-      inputs.mesa-fix.nixosModules.apple-silicon-support
+      inputs.apple-silicon-support.nixosModules.apple-silicon-support
 #./../secrets/eduroam.nix
     ];
 

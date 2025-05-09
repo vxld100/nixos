@@ -53,7 +53,7 @@
           modules = [
             ./system/configuration.nix
             /home/lilin/NixOS/secrets/eduroam.nix
-            mesa-fix.nixosModules.default
+            apple-silicon-support.nixosModules.default
           ];
         };
         datacenter = nixpkgs-stable.lib.nixosSystem {
