@@ -54,14 +54,19 @@
 
   hardware.graphics.enable = true;
 
+  # Bluetooth power management
   hardware.bluetooth = {
-    enable = true; # enables support for Bluetooth
-      powerOnBoot = true; # powers up the default Bluetooth controller on boot
-      settings = {
-	General = {
-	  Experimental = true;
-	};
+    enable = true;
+    powerOnBoot = true;
+    settings = {
+      General = {
+	ControllerMode = "bredr";
+	FastConnectable = true;
+	# Increase connection intervals
+	MinConnectionInterval = 6;
+	MaxConnectionInterval = 6;
       };
+    };
   };
 
   hardware.acpilight.enable = true;
@@ -157,16 +162,19 @@
     };
     wireplumber.extraConfig.bluetoothEnhancements = {
       "monitor.bluez.properties" = {
-	"bluez5.a2dp.aac.bitratemode" = "0";  # 0 = constant bitrate
+	"bluez5.a2dp.aac.bitratemode" = "0";
 	"bluez5.a2dp.aac.bitrate" = "256000";
 	"bluez5.a2dp.aac.quality" = "5";
-	# Add buffer settings
-	"bluez5.headset-buffer-time" = "128";
-	"bluez5.headset-period-time" = "32";
+	# Increase these buffer values
+	"bluez5.headset-buffer-time" = "256";  # was 128
+	"bluez5.headset-period-time" = "64";   # was 32
+	# Add these new ones
+	"bluez5.enable-msbc" = true;
+	"bluez5.enable-hw-volume" = false;     # Sometimes helps with crackling
+	"bluez5.autoswitch-profile" = false;   # Prevent profile switching
       };
     };
   };
-
 
 # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
