@@ -19,6 +19,7 @@
     flash.enable = true;
     cmp-latex-symbols.enable = true;
     #barbecue.enable = true;
+    markdown-preview.enable = true;
 
     luasnip = {
       enable = true;
