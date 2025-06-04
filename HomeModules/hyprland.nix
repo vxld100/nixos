@@ -64,7 +64,7 @@
         allow_workspace_cycles = true;
       };
 
-      windowrule = "opacity 0.9 0.9,^(Alacritty)$";
+      windowrule = "opacity 0.9 0.9,class:^(Alacritty)$";
 
       dwindle = {
         pseudotile = "yes";
