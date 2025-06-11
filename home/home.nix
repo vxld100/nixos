@@ -154,7 +154,8 @@
       csv = "csvlens";
       down = "shutdown 0";
       sync = "rclone bisync ~/Uni pcloud:/Uni --verbose;\
-	      rclone bisync ~/Documents pcloud:/Documents --verbose;";
+	      rclone bisync ~/Documents pcloud:/Documents --verbose;\
+	      rclone bisync ~/Bx pcloud:/Bx --verbose";
 
       update = "nh os switch \"$HOME/NixOS\" -- --impure";
       home = "nh home switch \"$HOME/NixOS\"";
@@ -197,6 +198,13 @@
 
     package = pkgs.quintom-cursor-theme;
     name = "Quintom_Ink";
+  };
+
+  programs.mpv = {
+    enable = true;
+    config = {
+      gpu-context = "wayland";
+    };
   };
 
   xdg.desktopEntries."com.github.iwalton3.jellyfin-media-player" = {
