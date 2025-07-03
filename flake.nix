@@ -81,6 +81,7 @@
             ./HomeModules/yazi.nix
             ./HomeModules/zoxide.nix
             ./HomeModules/nvim
+	    ./HomeModules/alire.nix
           ];
         };
         erebos = home-manager-stable.lib.homeManagerConfiguration {
