@@ -10,7 +10,7 @@
         "nm-applet"
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type image --watch cliphist store"
-        "swww init"
+        "swww-daemon"
         "swaync"
       ];
 
