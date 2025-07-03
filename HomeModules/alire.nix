@@ -8,52 +8,76 @@
   config = lib.mkIf config.programs.alire.enable {
     nixpkgs.overlays = [
       (final: prev: {
-        # A helper package to ensure Alire is built with gnat15 for consistency.
-        alire-with-gnat15 = prev.alire.override {
-          gnat = prev.gnat15;
-          gprbuild = prev.gnat15Packages.gprbuild;
-        };
 
-        # A custom derivation for the pre-built aarch64 binary of Alire.
-        alire-bin-aarch64 = prev.stdenv.mkDerivation {
-          pname = "alire-bin";
+        # A custom derivation to build Alire from source for aarch64-linux using gnat15.
+        alire-aarch64-from-source = prev.stdenv.mkDerivation (finalAttrs: {
+          pname = "alire";
           version = "2.1.0";
 
-          src = prev.fetchurl {
-            url = "https://github.com/alire-project/alire/releases/download/v2.1.0/alr-2.1.0-bin-aarch64-linux.zip";
-            hash = "sha256-XU1xHirjR1MskxISua7Knrodmrh9bYGcJiuyxdQj02M=";
+          # Use `prev.fetchFromGitHub` to get the source from the nixpkgs set
+          src = prev.fetchFromGitHub {
+            owner = "alire-project";
+            repo = "alire";
+            # Use `rev` and refer to this derivation's version attribute
+            rev = "v${finalAttrs.version}";
+            hash = "sha256-DfzCQu9xOe9JgX6RTrYOGTIS6EcPimLnd5pfXMtfRss=";
+            fetchSubmodules = true;
           };
 
-          nativeBuildInputs = [ prev.unzip prev.autoPatchelfHook prev.stdenv.cc.cc.lib ];
+          # Use the gnat15 toolchain from the nixpkgs overlay input (`prev`)
+          nativeBuildInputs = [
+            prev.gnat15
+            prev.gnat15Packages.gprbuild
+          ];
+
+          postPatch = ''
+            patchShebangs ./dev/build.sh ./scripts/version-patcher.sh
+          '';
+
+          buildPhase = ''
+            runHook preBuild
+            export ALIRE_BUILD_JOBS="$NIX_BUILD_CORES"
+            ./dev/build.sh
+            runHook postBuild
+          '';
 
           installPhase = ''
             runHook preInstall
-            install -Dm755 alr $out/bin/alr
+            mkdir -p $out
+            cp -r ./bin $out
             runHook postInstall
           '';
 
-          meta = {
-            description = "Pre-built binary of the Alire source package manager";
+          # `lib` is available from the module arguments
+          meta = with lib; {
+            description = "Source-based package manager for the Ada and SPARK programming languages";
             homepage = "https://alire.ada.dev";
-            license = prev.lib.licenses.gpl3Only;
-            platforms = [ "aarch64-linux" ];
+            changelog = "https://github.com/alire-project/alire/releases/tag/v${finalAttrs.version}";
+            license = licenses.gpl3Only;
+            maintainers = with maintainers; [ atalii ];
+            platforms = platforms.unix;
             mainProgram = "alr";
           };
-        };
+        });
 
-        # Redefine the 'alire' package to use our conditional logic.
+        # Redefine the 'alire' package
         alire =
+          # For aarch64-linux, use our custom source build.
           if prev.stdenv.isAarch64 && prev.stdenv.isLinux then
-            final.alire-bin-aarch64
-          else if prev.stdenv.isx86_64 && prev.stdenv.isLinux then
-            prev.alire
+            final.alire-aarch64-from-source
+          # For all other systems, use the standard alire package but override
+          # its compiler to be gnat15 for consistency.
           else
-	    final.alire-with-gnat15;
+            prev.alire.override {
+              gnat = prev.gnat15;
+              gprbuild = prev.gnat15Packages.gprbuild;
+            };
       })
     ];
 
     home.packages = with pkgs; [
-      # This 'alire' will now correctly resolve to the version from our overlay.
+      # This 'alire' will now correctly resolve to the conditional
+      # version defined in our overlay.
       alire
     ];
   };
