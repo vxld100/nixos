@@ -87,7 +87,7 @@
   opts = {
     number = true;
     relativenumber = true;
-    shiftwidth = 2;
+    shiftwidth = 3;
     signcolumn = "yes";
     wrap = false;
     hlsearch = false;
@@ -100,6 +100,22 @@
       pattern = "*";
       command = "lua vim.o.guicursor='a:hor20'";
     }
+    {
+      event = "FileType";
+      pattern = "ada";
+      command = "silent! iunmap <buffer> <Space>aj";
+    }
+    {
+      event = "FileType";
+      pattern = "ada";
+      command = "silent! iunmap <buffer> <Space>al";
+    }
+    {
+      event = "FileType";
+      pattern = "nix";
+      command = "setlocal shiftwidth=2 softtabstop=2 expandtab";
+    }
   ];
+
   };
 }
