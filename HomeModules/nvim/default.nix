@@ -1,3 +1,6 @@
+{ pkgs, ... }:
+
+
 {
   # Import all your configuration modules here
   imports = [ 
@@ -7,6 +10,7 @@
     ./onedark.nix
     ./alpha.nix
     ./neo-tree.nix
+    ./ada-ls.nix
     #./extra.nix
   ];
   programs.nixvim = {

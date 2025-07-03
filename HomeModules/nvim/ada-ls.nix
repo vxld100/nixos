@@ -1,33 +1,26 @@
 { pkgs, ... }:
-
 let
-  # --- Define the Custom Ada LSP Package Here ---
-  # By defining the package in this let block, it's available within this
-  # module's scope and avoids any file path issues.
   ada-lsp-pkg =
     if pkgs.stdenv.isAarch64 && pkgs.stdenv.isLinux then
       # --- On aarch64-linux, use the pre-built binary ---
       pkgs.stdenv.mkDerivation rec {
         pname = "ada-language-server-bin";
         version = "26.0.202504171";
-
         src = pkgs.fetchurl {
           url = "https://github.com/AdaCore/ada_language_server/releases/download/${version}/als-${version}-linux-arm64.tar.gz";
-          # IMPORTANT: You must replace this with the correct hash.
-          # To get the hash, run your Nix build once. It will fail with an
-          # error message containing the correct sha256 hash. Copy and paste it here.
-          hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+          hash = "sha256-LeG2XCuIeGmMGnGGl0TFcLQMl4KfTbKUpDg9ISVsXIU=";
         };
-
         nativeBuildInputs = [
           pkgs.autoPatchelfHook
           pkgs.stdenv.cc.cc.lib
+	  pkgs.gmp
         ];
-
         installPhase = ''
           runHook preInstall
           mkdir -p $out/bin
-          install -Dm755 bin/ada_language_server $out/bin/
+          # Since we're already in the 'integration' directory after unpacking,
+          # the path should be relative to that
+          install -Dm755 vscode/ada/arm64/linux/ada_language_server $out/bin/
           runHook postInstall
         '';
       }
@@ -36,18 +29,15 @@ let
       pkgs.stdenv.mkDerivation rec {
         pname = "ada-language-server-custom";
         version = "24.0.0";
-
         nativeBuildInputs = [
           pkgs.alire
           pkgs.gnat15
           pkgs.gprbuild
         ];
-
         src = pkgs.fetchurl {
           url = "https://github.com/AdaCore/ada_language_server/archive/refs/tags/v${version}.tar.gz";
           hash = "sha256-429uWj651c2/L+X0T8sBqgW7x22b27Fm295/Vj+G0+s=";
         };
-
         buildPhase = ''
           runHook preBuild
           export HOME=$(mktemp -d)
@@ -56,7 +46,6 @@ let
           alr build --release -- -p als
           runHook postBuild
         '';
-
         installPhase = ''
           runHook preInstall
           mkdir -p $out/bin
@@ -73,4 +62,3 @@ in
     package = ada-lsp-pkg;
   };
 }
-
