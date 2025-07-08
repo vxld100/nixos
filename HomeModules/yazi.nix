@@ -12,6 +12,7 @@
 	prepend_rules = [
 	  { name = "*.pdf"; use = "zathura"; }
 	  { name = "*.jpg"; use = "imv"; }
+	  { name = "*.jpeg"; use = "imv"; }
 	  { name = "*.png"; use = "imv"; }
 	  { name = "*.csv"; use = "csvlens"; }
 	];
