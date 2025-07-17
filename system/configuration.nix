@@ -42,6 +42,8 @@
     };
   };
 
+  security.unprivilegedUsernsClone = true;
+
 # Specify path to peripheral firmware files.
   hardware.asahi = {
     enable = true;
