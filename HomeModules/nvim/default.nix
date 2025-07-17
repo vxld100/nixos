@@ -72,6 +72,7 @@
         nixd.enable = true;
         pyright.enable = true;
 	ltex.enable = true;
+        clangd.enable = true;
       };
       preConfig = ''
         vim.fn.sign_define("DiagnosticSignError", { text = "✘", texthl = "DiagnosticSignError" })
