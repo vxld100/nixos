@@ -57,6 +57,9 @@
       nix-output-monitor
       nh
 
+      libinput
+      xournalpp
+
       # For screenshots
       hyprshot
       pulseaudio
@@ -178,6 +181,10 @@
 		 bindkey \"^H\" backward-delete-char
 		 bindkey \"^?\" backward-delete-char";
 
+  };
+
+  programs.nushell = {
+    enable = true;
   };
 
 
