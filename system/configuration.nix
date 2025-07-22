@@ -181,7 +181,7 @@
 # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
   programs.zsh.enable = true;
-  users.defaultUserShell = pkgs.zsh;
+  users.defaultUserShell = pkgs.nushell;
 
 # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.lilin = {
@@ -243,6 +243,11 @@
 	incomplete-dir-enabled = true;
       };
     };
+  };
+
+  services.kubo = {
+    enable = false;
+    autoMount = true;
   };
 
 
