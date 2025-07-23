@@ -64,7 +64,10 @@
         allow_workspace_cycles = true;
       };
 
-      windowrule = "opacity 0.9 0.9,class:^(Alacritty)$";
+      windowrule = [
+        "opacity 0.9 0.9,class:^(Alacritty)$"
+        "float, class:smile, title:Smile" 
+        ];
 
       dwindle = {
         pseudotile = "yes";
@@ -168,6 +171,7 @@
         "$mainMod, XF86MonBrightnessDown, exec, brightnessctl -d 'kbd_backlight' set 20-"
         ", XF86MonBrightnessUp, exec, brightnessctl set +50"
         ", XF86MonBrightnessDown, exec, brightnessctl set 50-"
+        "$mainMod, d, exec, GDK_BACKEND=x11 GDK_SCALE=2 GTK_THEME=Adwaita\:dark smile"
       ];
     };
   };

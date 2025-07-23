@@ -67,6 +67,7 @@
       #slurp
       #imagemagick
 
+      smile
       yazi
       eza
       fzf
