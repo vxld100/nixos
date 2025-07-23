@@ -185,6 +185,33 @@
 
   programs.nushell = {
     enable = true;
+    settings = {
+      show_banner = false;
+      edit_mode = "vi";
+    };
+    shellAliases = {
+      ls = "eza --icons=always";
+      ll = "eza -Alh --icons=always";
+      l = "eza -alh --icons=always";
+      la = "eza -A --icons=always";
+      gp = "gtrash put";
+      gf = "gtrash find";
+      gr = "gtrash restore";
+      cat = "bat";
+      rg = "yazi";
+      vim = "nvim";
+      csv = "csvlens";
+      down = "shutdown 0";
+      update = "nh os switch \"$HOME/NixOS\" -- --impure";
+      home = "nh home switch \"$HOME/NixOS\"";
+    };
+    extraConfig = ''
+      def sync [] {
+        rclone bisync ~/Uni pcloud:/Uni --verbose
+        rclone bisync ~/Documents pcloud:/Documents --verbose  
+        rclone bisync ~/Bx pcloud:/Bx --verbose
+      }
+    '';
   };
 
 
