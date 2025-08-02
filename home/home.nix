@@ -203,8 +203,8 @@
       vim = "nvim";
       csv = "csvlens";
       down = "shutdown 0";
-      update = "nh os switch \"$HOME/NixOS\" -- --impure";
-      home = "nh home switch \"$HOME/NixOS\"";
+      update = "nh os switch $\"($env.HOME)/NixOS\" -- --impure";
+      home = "nh home switch $\"($env.HOME)/NixOS\"";
     };
     extraConfig = ''
       def sync [] {
