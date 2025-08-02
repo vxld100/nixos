@@ -15,6 +15,7 @@
 	  { name = "*.jpeg"; use = "imv"; }
 	  { name = "*.png"; use = "imv"; }
 	  { name = "*.csv"; use = "csvlens"; }
+	  { name = "*.xopp"; use = "xournalpp"; }
 	];
       };
     };
