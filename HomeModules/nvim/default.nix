@@ -13,6 +13,7 @@
     ./ada-ls.nix
     #./extra.nix
   ];
+  home.packages = [ pkgs.coqPackages.coq-lsp ];
   programs.nixvim = {
 
   plugins = {
@@ -73,6 +74,10 @@
         pyright.enable = true;
 	ltex.enable = true;
         clangd.enable = true;
+        coq_lsp = {
+          enable = true;
+          package = pkgs.vimPlugins.Coqtail;
+        };
       };
       preConfig = ''
         vim.fn.sign_define("DiagnosticSignError", { text = "✘", texthl = "DiagnosticSignError" })
