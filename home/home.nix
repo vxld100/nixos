@@ -157,8 +157,7 @@
       vim = "nvim $1";
       csv = "csvlens";
       down = "shutdown 0";
-      sync = "rclone bisync ~/Uni pcloud:/Uni --verbose;\
-	      rclone bisync ~/Documents pcloud:/Documents --verbose;\
+      sync = " rclone bisync ~/Documents pcloud:/Documents --verbose;\
 	      rclone bisync ~/Bx pcloud:/Bx --verbose";
 
       update = "nh os switch \"$HOME/NixOS\" -- --impure";
@@ -208,11 +207,13 @@
     };
     extraConfig = ''
       def sync [] {
-        rclone bisync ~/Uni pcloud:/Uni --verbose
         rclone bisync ~/Documents pcloud:/Documents --verbose  
         rclone bisync ~/Bx pcloud:/Bx --verbose
       }
     '';
+    environmentVariables = {
+      EDITOR = "nvim";
+    };
   };
 
 
@@ -283,7 +284,7 @@
     {
       event = "BufWritePost";
       pattern = "*.tex";
-      command = "silent !cd \"%:p:h\" && xelatex \"%:t\" && cp \"%:t:r.pdf\" \"..\"";
+      command = "silent !bash -c \"cd '%:p:h' && xelatex '%:t' && cp '%:t:r.pdf' '..'\"";
       group = "TexAutoCompile";
     }
     {
