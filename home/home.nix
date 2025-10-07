@@ -2,7 +2,7 @@
 
 {
   imports = [
-    inputs.nixvim.homeManagerModules.nixvim
+    inputs.nixvim.homeModules.nixvim
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -78,7 +78,7 @@
       devenv
 
       teams-for-linux
-      jellyfin-media-player
+      #jellyfin-media-player
       thunderbird
       yt-dlp
 
@@ -300,7 +300,7 @@
     ];
   };
 
-  programs.alire.enable = true;
+  #programs.alire.enable = true;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

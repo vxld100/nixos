@@ -78,10 +78,9 @@
         new_status = "master";
       };
 
-      gestures = {
-        workspace_swipe = true;
-	workspace_swipe_min_speed_to_force = 10;
-      };
+      gesture = [
+        "3, horizontal, workspace, scale 1.5" 
+      ];
 
       input = {
         kb_layout = "ch,ru";

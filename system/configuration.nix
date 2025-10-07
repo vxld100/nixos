@@ -47,8 +47,6 @@
 # Specify path to peripheral firmware files.
   hardware.asahi = {
     enable = true;
-    useExperimentalGPUDriver = true;
-    experimentalGPUInstallMode = "replace";
     peripheralFirmwareDirectory = ./firmware;
 #setupAsahiSound = false;
   };
