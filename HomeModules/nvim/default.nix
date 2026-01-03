@@ -11,6 +11,7 @@
     ./alpha.nix
     ./neo-tree.nix
     ./ada-ls.nix
+    ./rocq.nix
     #./extra.nix
   ];
   home.packages = [ pkgs.coqPackages.coq-lsp ];

@@ -9,7 +9,7 @@
   programs.nixvim = {
     # 1. Install Coqtail via extraPlugins since there is no native NixVim module yet
     extraPlugins = with pkgs.vimPlugins; [
-      coqtail
+      Coqtail
     ];
 
     # 2. Configure Coqtail Globals
