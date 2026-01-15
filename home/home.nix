@@ -53,9 +53,10 @@
       lesspass-cli
       libreoffice-qt
       rclone
-      imv
+      qimgv
       nix-output-monitor
       nh
+      pdftk
 
       libinput
       xournalpp

@@ -64,7 +64,7 @@
         allow_workspace_cycles = true;
       };
 
-      windowrule = [
+      windowrulev2 = [
         "opacity 0.9 0.9,class:^(Alacritty)$"
         "float, class:smile, title:Smile" 
         ];
@@ -110,7 +110,7 @@
         "$mainMod, C, killactive, "
         "$ModShift, Q, exit, "
         "$mainMod, E, exec, ghostty -e yazi ~"
-        "$mainMod, R, exec, ghostty -e yazi ~/Uni"
+        "$mainMod, R, exec, ghostty -e yazi ~/Documents/"
         "$mainMod, V, togglefloating, "
         "$mainMod, S, exec, wofi --show=drun -i --matchin=fuzzy --normal-window --prompt=\"Choose application to run\""
         "$mainMod, P, pseudo, "

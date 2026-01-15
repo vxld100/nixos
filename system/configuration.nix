@@ -99,11 +99,11 @@
 
 # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-# console = {
-#  font = "Lat2-Terminus16";
-#  keyMap = "ch";
-#  useXkbConfig = true; # use xkb.options in tty.
-#};
+  console = {
+   #font = "Lat2-Terminus16";
+   #keyMap = "sg";
+   useXkbConfig = true; # use xkb.options in tty.
+ };
 
 # Enable Hyprland and the X11 windowing system.
   programs.hyprland = {
@@ -129,7 +129,9 @@
     };
   };
 
-  services.displayManager.sddm.enable = true;
+  services.displayManager.ly = {
+    enable = true;
+  };
 
 
 # services.xserver.xkb.options = "eurosign:e,caps:escape";
@@ -178,7 +180,7 @@
 # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
   programs.zsh.enable = true;
-  users.defaultUserShell = pkgs.nushell;
+  users.defaultUserShell = pkgs.zsh;
 
 # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.lilin = {
