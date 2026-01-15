@@ -177,7 +177,7 @@
       };
     };
 
-    initExtra = "autoload -U compinit; compinit
+    initContent = "autoload -U compinit; compinit
 		 source ~/NixOS/HomeModules/fzf-tab/fzf-tab.plugin.zsh
 		 bindkey \"^H\" backward-delete-char
 		 bindkey \"^?\" backward-delete-char";
@@ -220,8 +220,12 @@
 
   programs.git = {
     enable = true;
-    userName  = "Lilin";
-    userEmail = "vxld100@tuta.io";
+    settings = {
+      user = {
+        name="Lilin";
+        email="vxld100@tuta.io";
+      };
+    };
   };
 
   gtk = {
