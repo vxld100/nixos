@@ -88,6 +88,17 @@
     };
   };
 
+  # for kde connect
+  networking.firewall = {
+    enable = true;
+    allowedTCPPortRanges = [ 
+      { from = 1714; to = 1764; } 
+    ];
+    allowedUDPPortRanges = [ 
+      { from = 1714; to = 1764; } 
+    ];
+  };
+
   services.blueman.enable = true;
 
 # Set your time zone.
@@ -248,6 +259,8 @@
     enable = false;
     autoMount = true;
   };
+  
+  programs.kdeconnect.enable = true;
 
 
 # This option defines the first version of NixOS you have installed on this particular machine,
