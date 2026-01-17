@@ -14,6 +14,8 @@
 	  { url = "*.jpg"; use = "imv"; }
 	  { url = "*.jpeg"; use = "imv"; }
 	  { url = "*.png"; use = "imv"; }
+	  { url = "*.gif"; use = "imv"; }
+	  { url = "*.webp"; use = "imv"; }
 	  { url = "*.csv"; use = "csvlens"; }
 	  { url = "*.xopp"; use = "xournalpp"; }
 	];
