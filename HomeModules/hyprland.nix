@@ -12,6 +12,7 @@
         "wl-paste --type image --watch cliphist store"
         "swww-daemon"
         "swaync"
+        "hyprsunset"
       ];
 
       exec = "hyprpaper";

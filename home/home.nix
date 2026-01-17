@@ -63,6 +63,7 @@
 
       # For screenshots
       hyprshot
+      hyprsunset
       pulseaudio
       #grim
       #slurp
