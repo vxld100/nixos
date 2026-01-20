@@ -308,6 +308,17 @@
 
   programs.alire.enable = true;
 
+  xdg.desktopEntries = {
+    qimgv = {
+      name = "qimgv";
+      exec = "env QT_SCALE_FACTOR=2.0 qimgv %F";
+      icon = "qimgv";
+      type = "Application";
+      categories = [ "Graphics" "Viewer" ];
+      mimeType = [ "image/jpeg" "image/png" "image/gif" ];
+    };
+  };
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
