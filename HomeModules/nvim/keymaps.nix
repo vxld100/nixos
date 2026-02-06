@@ -31,7 +31,7 @@
     { key = "r"; action = "<cmd>lua require('flash').remote()<CR>"; mode = "o"; options.desc = "Remote Flash"; }
     { key = "R"; action = "<cmd>lua require('flash').treesitter_search()<CR>"; mode = [ "o" "x" ]; options.desc = "Treesitter Search"; }
     { key = "<C-s>"; action = "<cmd>lua require('flash').toggle()<CR>"; mode = "c"; options.desc = "Toggle Flash Search"; }
-    { key = "<leader>tb"; action = ":silent !xelatex '%:p' && bibtex '%:r' && xelatex '%:p' && xelatex '%:p' && cp '%:r.pdf' '$(dirname \"%:p\")/..'"; mode = "n"; }
+    { key = "<leader>tb"; action = ":silent !xelatex \"%\" && bibtex \"%:r\" && xelatex \"%\" && xelatex \"%\" && cp \"%:r.pdf\" \"%:p:h/..\""; mode = "n"; }
   ];
   };
 }
