@@ -13,6 +13,7 @@
         "swww-daemon"
         "swaync"
         "hyprsunset"
+        "fcitx5 -d --replace"
       ];
 
       exec = "hyprpaper";

@@ -116,6 +116,15 @@
    useXkbConfig = true; # use xkb.options in tty.
  };
 
+ i18n.inputMethod = {
+    enable = true;
+    type = "fcitx5";
+    fcitx5.addons = with pkgs; [
+      fcitx5-gtk           # For GTK2/3/4 applications like Ghostty
+      fcitx5-lua           # Required for some configuration options
+    ];
+  };
+
 # Enable Hyprland and the X11 windowing system.
   programs.hyprland = {
     enable = true;
@@ -136,7 +145,11 @@
   services = {
     xserver = {
       enable = true;
-      xkb.layout = "ch";
+      xkb = {
+        layout = "ch";
+        model="applealupce";
+        variant = "";
+      };
     };
   };
 
@@ -238,11 +251,11 @@
   };
 
   services = {
-    jellyfin = { enable = true; group = "multimedia"; };
-    sonarr = { enable = true; group = "multimedia"; };
-    radarr = { enable = true; group = "multimedia"; };
-    lidarr = { enable = true; group = "multimedia"; };
-    prowlarr = { enable = true; };
+    jellyfin = { enable = false; group = "multimedia"; };
+    sonarr = { enable = false; group = "multimedia"; };
+    radarr = { enable = false; group = "multimedia"; };
+    lidarr = { enable = false; group = "multimedia"; };
+    prowlarr = { enable = false; };
     transmission = {
       enable = false;
       package = pkgs.transmission_4;
