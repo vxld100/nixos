@@ -5,6 +5,7 @@
     settings = {
       opener = {
         imv = [{ run = "setsid -f qimgv %s"; orphan=true; }];
+        mpv = [{ run = "setsid -f ghostty -e mpv %s"; orphan=true; }];
         zathura = [{ run = "setsid -f zathura %s"; orphan=true; }];
         csvlens = [{ run = "setsid -f ghostty -e csvlens %s"; orphan=true; }];
       };
@@ -18,6 +19,7 @@
 	  { url = "*.webp"; use = "imv"; }
 	  { url = "*.csv"; use = "csvlens"; }
 	  { url = "*.xopp"; use = "xournalpp"; }
+	  { url = "*.ogg"; use = "mpv"; }
 	];
       };
     };
