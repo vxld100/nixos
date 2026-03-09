@@ -82,7 +82,9 @@
       teams-for-linux
       #jellyfin-media-player
       thunderbird
+      telegram-desktop
       yt-dlp
+      instaloader
 
       ffmpeg
       mpv
