@@ -85,6 +85,7 @@
       telegram-desktop
       yt-dlp
       instaloader
+      gallery-dl
 
       ffmpeg
       mpv
