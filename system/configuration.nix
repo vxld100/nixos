@@ -14,8 +14,17 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  nixpkgs.overlays = [ (final: prev: {
+    lix = prev.lixPackageSets.stable.lix;
+    inherit (prev.lixPackageSets.stable)
+      nixpkgs-review
+      nix-eval-jobs
+      nix-fast-build
+      colmena;
+  }) ];
+
   nix = {
-    package = pkgs.nixVersions.stable;  # Changed from pkgs.nixFlakes
+    package = pkgs.lix;  # Changed from pkgs.nixFlakes
       # Here I used to have also flake-repl as an experimental feature, but at some point it wouldn't build anymore
       extraOptions = ''
       experimental-features = nix-command flakes 
