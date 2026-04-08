@@ -57,6 +57,7 @@
       nix-output-monitor
       nh
       pdftk
+      element-desktop
 
       libinput
       xournalpp
