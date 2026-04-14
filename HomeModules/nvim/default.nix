@@ -14,7 +14,7 @@
     ./rocq.nix
     #./extra.nix
   ];
-  home.packages = [ pkgs.coqPackages.coq-lsp ];
+  home.packages = with pkgs; [ coqPackages.coq-lsp ripgrep fd ];
   programs.nixvim = {
 
   plugins = {

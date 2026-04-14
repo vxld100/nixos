@@ -10,7 +10,7 @@
         "nm-applet"
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type image --watch cliphist store"
-        "swww-daemon"
+        "awww-daemon"
         "swaync"
         "hyprsunset"
         "fcitx5 -d --replace"
@@ -66,9 +66,10 @@
         allow_workspace_cycles = true;
       };
 
-      windowrulev2 = [
-        "opacity 0.9 0.9,class:^(Alacritty)$"
-        "float, class:smile, title:Smile" 
+      windowrule = [
+        "match:class ^(Alacritty)$, opacity 0.9 0.9"
+        "match:class smile, float on"
+        "match:title Smile, float on"
         ];
 
       dwindle = {
