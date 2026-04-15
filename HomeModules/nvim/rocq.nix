@@ -5,6 +5,7 @@ in
 {
   home.packages = with pkgs; [
     rocq-core
+    coq
     coqScope.stdlib
     coqScope.coq-lsp
   ];
