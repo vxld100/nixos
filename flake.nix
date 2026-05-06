@@ -14,11 +14,7 @@
         inputs.nixpkgs.follows = "nixpkgs-stable";
     };
     apple-silicon-support = {
-      url = "github:tpwrules/nixos-apple-silicon";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-    mesa-fix = {
-      url = "github:Lederstrumpf/nixos-apple-silicon/mesa-changes";
+      url = "github:nix-community/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
@@ -30,7 +26,7 @@
 
   outputs = { self, nixpkgs-unstable, nixpkgs-stable, 
            home-manager-unstable, home-manager-stable, 
-           apple-silicon-support, mesa-fix, nixvim, ... }@inputs: 
+           apple-silicon-support, nixvim, ... }@inputs: 
 
     let
       aarch64System = "aarch64-linux";

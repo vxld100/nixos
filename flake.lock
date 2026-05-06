@@ -8,15 +8,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1775887459,
-        "narHash": "sha256-aUC+iK8zpMxdZLMhQpmUz9XBzKrQnFWzveB9IK18n3w=",
-        "owner": "tpwrules",
+        "lastModified": 1776147994,
+        "narHash": "sha256-c5F8jYiB0fjWsP4j/yeszqszA3laflzDj6/pmoJTeG4=",
+        "owner": "nix-community",
         "repo": "nixos-apple-silicon",
-        "rev": "b6d1d07d55831902cb188a40692a5c7b5529e9e0",
+        "rev": "81439a7fb8067ab43641efd79c84607701da1ccd",
         "type": "github"
       },
       "original": {
-        "owner": "tpwrules",
+        "owner": "nix-community",
         "repo": "nixos-apple-silicon",
         "type": "github"
       }
@@ -28,21 +28,6 @@
         "owner": "nix-community",
         "repo": "flake-compat",
         "rev": "4a56054d8ffc173222d09dad23adf4ba946c8884",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "flake-compat",
-        "type": "github"
-      }
-    },
-    "flake-compat_2": {
-      "locked": {
-        "lastModified": 1688025799,
-        "narHash": "sha256-ktpB4dRtnksm9F5WawoIkEneh1nrEvuxb5lJFt1iOyw=",
-        "owner": "nix-community",
-        "repo": "flake-compat",
-        "rev": "8bf105319d44f6b9f0d764efa4fdef9f1cc9ba1c",
         "type": "github"
       },
       "original": {
@@ -113,29 +98,6 @@
         "type": "github"
       }
     },
-    "mesa-fix": {
-      "inputs": {
-        "flake-compat": "flake-compat_2",
-        "nixpkgs": [
-          "nixpkgs-unstable"
-        ],
-        "rust-overlay": "rust-overlay"
-      },
-      "locked": {
-        "lastModified": 1742302451,
-        "narHash": "sha256-3a+9Bdn/o4WUxKkXdm1l8IFu0jltcAWJ3qqK0Q8EBiA=",
-        "owner": "Lederstrumpf",
-        "repo": "nixos-apple-silicon",
-        "rev": "882a4894034d5ed8130d212ef5daa3eac92d07df",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Lederstrumpf",
-        "ref": "mesa-changes",
-        "repo": "nixos-apple-silicon",
-        "type": "github"
-      }
-    },
     "nixpkgs-stable": {
       "locked": {
         "lastModified": 1751274312,
@@ -195,26 +157,9 @@
         "apple-silicon-support": "apple-silicon-support",
         "home-manager-stable": "home-manager-stable",
         "home-manager-unstable": "home-manager-unstable",
-        "mesa-fix": "mesa-fix",
         "nixpkgs-stable": "nixpkgs-stable",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nixvim": "nixvim"
-      }
-    },
-    "rust-overlay": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1686795910,
-        "narHash": "sha256-jDa40qRZ0GRQtP9EMZdf+uCbvzuLnJglTUI2JoHfWDc=",
-        "owner": "oxalica",
-        "repo": "rust-overlay",
-        "rev": "5c2b97c0a9bc5217fc3dfb1555aae0fb756d99f9",
-        "type": "github"
-      },
-      "original": {
-        "owner": "oxalica",
-        "repo": "rust-overlay",
-        "type": "github"
       }
     },
     "systems": {
