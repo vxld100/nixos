@@ -113,7 +113,6 @@
         "$mainMod, C, killactive, "
         "$ModShift, Q, exit, "
         "$mainMod, E, exec, ghostty -e yazi ~"
-        "$mainMod, R, exec, ghostty -e yazi ~/Documents/"
         "$mainMod, V, togglefloating, "
         "$mainMod, S, exec, wofi --show=drun -i --matchin=fuzzy --normal-window --prompt=\"Choose application to run\""
         "$mainMod, P, pseudo, "
@@ -174,6 +173,7 @@
         ", XF86MonBrightnessUp, exec, brightnessctl set +50"
         ", XF86MonBrightnessDown, exec, brightnessctl set 50-"
         "$mainMod, d, exec, GDK_BACKEND=x11 GDK_SCALE=2 GTK_THEME=Adwaita\:dark smile"
+        "$mainMod, r, exec, ~/.config/hypr/scripts/open_books.sh"
       ];
     };
   };
