@@ -79,6 +79,7 @@
             ./HomeModules/nvim
 	    ./HomeModules/alire.nix
 	    ./HomeModules/rofi.nix
+            ./HomeModules/kitty.nix
           ];
         };
         erebos = home-manager-stable.lib.homeManagerConfiguration {
