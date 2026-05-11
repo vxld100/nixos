@@ -6,9 +6,9 @@
     settings = {
       opener = {
         imv = [{ run = "setsid -f qimgv %s"; orphan=true; }];
-        mpv = [{ run = "setsid -f ghostty -e mpv %s"; orphan=true; }];
+        mpv = [{ run = "setsid -f kitty -e mpv %s"; orphan=true; }];
         zathura = [{ run = "setsid -f zathura %s"; orphan=true; }];
-        csvlens = [{ run = "setsid -f ghostty -e csvlens %s"; orphan=true; }];
+        csvlens = [{ run = "setsid -f kitty -e csvlens %s"; orphan=true; }];
       };
       open = {
 	prepend_rules = [
