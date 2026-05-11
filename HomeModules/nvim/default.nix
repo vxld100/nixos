@@ -26,6 +26,7 @@
     cmp-latex-symbols.enable = true;
     #barbecue.enable = true;
     markdown-preview.enable = true;
+    direnv.enable = true;
 
     luasnip = {
       enable = true;
