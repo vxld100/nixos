@@ -48,7 +48,7 @@
       wl-clipboard
       #mako
       fastfetch
-      zathura
+      #zathura
       anki
       lesspass-cli
       libreoffice-qt
@@ -91,7 +91,7 @@
       ffmpeg
       mpv
       htop
-      swww
+      awww
       gimp
 
       unzip
@@ -102,6 +102,8 @@
       texlivePackages.moderncv
 
       zellij
+
+      gocryptfs
       ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -135,6 +137,35 @@
     WLR_NO_HARDWARE_CURSORS=1; # This way the cursor is not invisible on wayland
   };
 
+  nixpkgs.overlays = [
+    (final: prev: {
+      zathuraPkgs = prev.zathuraPkgs.overrideScope (sfinal: sprev: {
+        zathura_core = sprev.zathura_core.overrideAttrs (oldAttrs: {
+          version = "2026.03.27";
+          src = prev.fetchFromGitHub {
+            owner = "pwmt";
+            repo = "zathura";
+            rev = "2026.03.27";
+            hash = "sha256-KnLwt0bjTj2YI1GAu02JzPT02ITKAHIApxDZSBAHt9A=";
+          };
+        });
+      });
+      zathura = final.zathuraPkgs.zathuraWrapper;
+    })
+  ];
+
+  programs.zathura = {
+    enable = true;
+    mappings = {
+      "_" = "zoom in";
+      "<BackSpace>" = "jumplist backward";
+      "<S-BackSpace>" = "jumplist forward";
+    };
+    options = {
+      selection-clipboard = "clipboard";
+    };
+  };
+
   programs.waybar.enable = true;
 
   services.swaync.enable = true;
@@ -163,8 +194,7 @@
       vim = "nvim $1";
       csv = "csvlens";
       down = "shutdown 0";
-      sync = " rclone bisync ~/Documents pcloud:/Documents --verbose;\
-	      rclone bisync ~/Bx pcloud:/Bx --verbose";
+      sync = "rclone bisync ~/Documents pcloud:/Documents --verbose";
 
       update = "nh os switch \"$HOME/NixOS\" -- --impure";
       home = "nh home switch \"$HOME/NixOS\"";
@@ -225,6 +255,7 @@
 
   programs.git = {
     enable = true;
+    signing.format = "openpgp";
     settings = {
       user = {
         name="Lilin";
@@ -237,6 +268,7 @@
     enable = true;
     cursorTheme.package = pkgs.quintom-cursor-theme;
     cursorTheme.name = "Quintom_Ink";
+    gtk4.theme = config.gtk.theme;
   };
 
   home.pointerCursor = {
