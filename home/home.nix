@@ -194,7 +194,11 @@
       vim = "nvim $1";
       csv = "csvlens";
       down = "shutdown 0";
-      sync = "rclone bisync ~/Documents pcloud:/Documents --verbose";
+      sync = ''
+        rclone bisync ~/Documents pcloud:/Documents --verbose
+        rclone sync ~/uboot1 pcloud:/fleet/uboot1 --verbose
+      '';
+      undock = "fusermount -u dock";
 
       update = "nh os switch \"$HOME/NixOS\" -- --impure";
       home = "nh home switch \"$HOME/NixOS\"";
@@ -212,10 +216,15 @@
       };
     };
 
-    initContent = "autoload -U compinit; compinit
-		 source ~/NixOS/HomeModules/fzf-tab/fzf-tab.plugin.zsh
-		 bindkey \"^H\" backward-delete-char
-		 bindkey \"^?\" backward-delete-char";
+    initContent = lib.mkOrder 500 ''
+      dock() {
+        gocryptfs "$1" dock && cd dock
+      }
+      autoload -U compinit; compinit
+      source ~/NixOS/HomeModules/fzf-tab/fzf-tab.plugin.zsh
+      bindkey "^H" backward-delete-char
+      bindkey "^?" backward-delete-char
+    '';
 
   };
 
