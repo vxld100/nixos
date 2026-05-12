@@ -23,10 +23,19 @@
     #friendly-snippets.enable = true;
     nvim-autopairs.enable = true;
     flash.enable = true;
-    cmp-latex-symbols.enable = true;
+    #cmp-latex-symbols.enable = true;
     #barbecue.enable = true;
     markdown-preview.enable = true;
     direnv.enable = true;
+
+    vimtex = {
+      enable = true;
+      texlivePackage = null; #otherwise it installs the medium scheme
+      settings = {
+        compiler_enabled = false;
+      };
+    };    
+    cmp-vimtex.enable = true;
 
     luasnip = {
       enable = true;
@@ -74,7 +83,9 @@
       servers = {
         nixd.enable = true;
         pyright.enable = true;
-	ltex.enable = true;
+	texlab = {
+          enable = true;
+        };
         clangd.enable = true;
         coq_lsp = {
           enable = true;
@@ -90,7 +101,10 @@
     };
   };
 
-  globals.mapleader = " ";
+  globals = {
+    mapleader = " ";
+    maplocalleader = ",";
+  };
 
   opts = {
     number = true;
@@ -100,6 +114,7 @@
     wrap = false;
     hlsearch = false;
     incsearch = true;
+    conceallevel = 2;
   };
 
   autoCmd = [

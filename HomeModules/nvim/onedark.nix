@@ -21,6 +21,7 @@
         "@selector" = { fg = "$dark_cyan"; };
         "@repeat" = { fg = "$dark_purple"; };
         "@keyword.repeat" = { fg = "$dark_purple"; };
+        "Conceal" = { fg = "$fg"; bg = "none"; };
       };
     };
   };
