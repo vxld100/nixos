@@ -42,13 +42,13 @@
       scrollbar_width = 0.2;
       scrollbar_handle_opacity = 0.2;
 
-      # Standard Colors
+      # OneDark (Darker) Colors
       color0 = "#0e1013"; # black
       color1 = "#e55561"; # red
       color2 = "#8ebd6b"; # green
-      color3 = "#d1b86b"; # your custom yellow
-      color4 = "#3781bf"; # your custom blue
-      color5 = "#bf69d9"; # your custom dark_purple
+      color3 = "#d9ba5b"; # custom yellow
+      color4 = "#3781bf"; # custom blue
+      color5 = "#bf69d9"; # custom dark_purple
       color6 = "#48b0bd"; # cyan
       color7 = "#a0a8b7"; # muted grey-white (editor fg)
 
