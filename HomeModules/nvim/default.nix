@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 
 {
@@ -50,6 +50,29 @@
 
     treesitter = {
       enable = true;
+      highlight = { 
+        enable = true;
+        disable = [ "nix" ];
+      };
+      indent.enable = true;
+      folding.enable = true;
+      grammarPackages = with config.programs.nixvim.plugins.treesitter.package.builtGrammars; [
+        bash
+        json
+        lua
+        make
+        markdown
+        nix
+        regex
+        toml
+        vim
+        vimdoc
+        xml
+        yaml
+        go
+        python
+        ada
+      ];
     };
 
     toggleterm = {
@@ -82,6 +105,7 @@
       enable = true;
       servers = {
         nixd.enable = true;
+        gopls.enable = true;
         pyright.enable = true;
 	texlab = {
           enable = true;
@@ -137,6 +161,20 @@
       event = "FileType";
       pattern = "nix";
       command = "setlocal shiftwidth=2 softtabstop=2 expandtab";
+    }
+    {
+      event = "FileType";
+      pattern = [ "nix" ];
+      callback.__raw = ''
+        function(ev)
+          vim.treesitter.stop(ev.buf)
+        end
+      '';
+    }
+    {
+      event = "FileType";
+      pattern = "go";
+      command = "setlocal shiftwidth=4 softtabstop=4 expandtab";
     }
   ];
 
