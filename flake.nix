@@ -71,6 +71,7 @@
           modules = [
             ./home/home.nix
             ./HomeModules/oh-my-posh.nix
+            ./HomeModules/waybar.nix
             ./HomeModules/hyprland.nix
             ./HomeModules/alacritty.nix
             ./HomeModules/ghostty.nix

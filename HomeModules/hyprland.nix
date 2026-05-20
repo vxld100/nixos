@@ -14,6 +14,7 @@
         "swaync"
         "hyprsunset"
         "fcitx5 -d --replace"
+        "waybar"
       ];
 
       exec = "hyprpaper";
