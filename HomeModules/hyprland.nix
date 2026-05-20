@@ -172,7 +172,7 @@
         "$mainMod, XF86MonBrightnessDown, exec, brightnessctl -d 'kbd_backlight' set 20-"
         ", XF86MonBrightnessUp, exec, brightnessctl set +50"
         ", XF86MonBrightnessDown, exec, brightnessctl set 50-"
-        "$mainMod, d, exec, GDK_BACKEND=x11 GDK_SCALE=2 GTK_THEME=Adwaita\:dark smile"
+        "$mainMod, d, exec, ~/.config/hypr/scripts/emoji.sh"
         "$mainMod, r, exec, ~/.config/hypr/scripts/open_books.sh"
       ];
     };

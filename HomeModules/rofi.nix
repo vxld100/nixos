@@ -3,16 +3,20 @@
   programs.rofi = {
     enable = true;
     font = "JetBrainsMono Nerd Font 20";
+    modes = [ "emoji" ];
+    plugins = [ pkgs.rofi-emoji ];
     extraConfig = {
-      # We must redefine 'accept' to NOT include Ctrl-j
-      kb-accept-entry = "Return,Control+m";
-      
       # Assign our Vim keys
       kb-row-down = "Control+j";
       kb-row-up = "Control+k";
+      kb-row-left = "Control+h";
+      kb-row-right = "Control+l";
       
-      # We have to 'unmap' Ctrl-k from its default (delete to end of line)
+      # We have to 'unmap' some keybindings from their defaults
+      kb-accept-entry = "Return,Control+m";
+      kb-remove-char-back = "BackSpace,Shift+BackSpace";
       kb-remove-to-eol = "";
+      kb-mode-complete = "";
 
       # 'normal' means it looks for exact substrings, not fuzzy leaps
       matching = "normal";
