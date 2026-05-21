@@ -71,6 +71,9 @@
       #slurp
       #imagemagick
 
+      nmgui
+      bluetui
+
       smile
       yazi
       eza
