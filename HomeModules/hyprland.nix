@@ -71,6 +71,8 @@
         "match:class ^(Alacritty)$, opacity 0.9 0.9"
         "match:class smile, float on"
         "match:title Smile, float on"
+        "match:title Network Manager, float on"
+        "match:title Network Manager, size 1600 900"
         ];
 
       dwindle = {
