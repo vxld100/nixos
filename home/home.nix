@@ -49,6 +49,7 @@
       #mako
       fastfetch
       #zathura
+      pavucontrol
       anki
       lesspass-cli
       libreoffice-qt
@@ -197,6 +198,8 @@
         rclone sync ~/uboot1 pcloud:/fleet/uboot1 --verbose
       '';
       undock = "fusermount -u dock";
+
+      fixbt="handle=$(hcitool con | grep -oP \"handle \\K[0-9]+\"); sudo hcitool cmd 0x3f 0x57 $(printf 0x%02X $handle) 0x00 0x01";
 
       update = "nh os switch \"$HOME/NixOS\" -- --impure";
       home = "nh home switch \"$HOME/NixOS\"";
