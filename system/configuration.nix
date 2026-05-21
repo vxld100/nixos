@@ -175,6 +175,22 @@
       support32Bit = true;
     };
     pulse.enable = true;
+    wireplumber.extraConfig = {
+      "50-bt-latency" = {
+        "monitor.bluez.rules" = [
+          {
+            matches = [
+              { "node.name" = "~bluez_output.*"; }
+            ];
+            actions = {
+              "update-props" = {
+                "latency.internal.ns" = 100000000; # 100ms buffer cushion
+              };
+            };
+          }
+        ];
+      };
+    };
 # If you want to use JACK applications, uncomment this
 #jack.enable = true;
   };
