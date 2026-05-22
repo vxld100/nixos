@@ -164,6 +164,8 @@
       "_" = "zoom in";
       "<BackSpace>" = "jumplist backward";
       "<S-BackSpace>" = "jumplist forward";
+      "[normal] f" = "toggle_fullscreen";
+      "[fullscreen] f" = "toggle_fullscreen";
     };
     options = {
       selection-clipboard = "clipboard";
