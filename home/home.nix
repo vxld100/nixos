@@ -138,7 +138,10 @@
   #
   # Note that this works only when home manager is managing the shell. Otherwise any such variables have to be set somewhere else
   home.sessionVariables = {
-    WLR_NO_HARDWARE_CURSORS=1; # This way the cursor is not invisible on wayland
+    WLR_NO_HARDWARE_CURSORS = 1; # This way the cursor is not invisible on wayland
+    NIXOS_OZONE_WL = 1; # Forces Electron apps to use Wayland natively
+    GDK_BACKEND = "wayland,x11"; # Tries Wayland first, falls back to X11 if needed
+    QT_QPA_PLATFORM = "wayland;xcb";
   };
 
   nixpkgs.overlays = [
@@ -283,6 +286,11 @@
     enable = true;
     cursorTheme.package = pkgs.quintom-cursor-theme;
     cursorTheme.name = "Quintom_Ink";
+    theme = {
+      name = "Adwaita-dark";
+      package = pkgs.gnome-themes-extra;
+    };
+    gtk3.theme = config.gtk.theme;
     gtk4.theme = config.gtk.theme;
   };
 
