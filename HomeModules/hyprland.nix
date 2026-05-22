@@ -72,7 +72,11 @@
         "match:class smile, float on"
         "match:title Smile, float on"
         "match:title Network Manager, float on"
-        "match:title Network Manager, size 1600 900"
+        "match:title Network Manager, size 1600 1200"
+        "match:title Network Manager, center true"
+        "match:title Volume Control, float on"
+        "match:title Volume Control, size 1600 1200"
+        "match:title Volume Control, center true"
         ];
 
       dwindle = {
