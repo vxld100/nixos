@@ -262,13 +262,15 @@
     };
   };
 
-  services.kubo = {
-    enable = false;
-    autoMount = true;
+  services.searx = {
+    enable = true;
+    package = pkgs.searxng;
+    settings.server = {
+      bind_address = "127.0.0.1";
+      port = 8888;
+      secret_key = "8116f76451814758582cd6c9e1cebcea549e40c7807f83b87421be5d952eada9";
+    };
   };
-  
-  programs.kdeconnect.enable = true;
-
 
 # This option defines the first version of NixOS you have installed on this particular machine,
 # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
