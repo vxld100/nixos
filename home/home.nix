@@ -48,7 +48,8 @@
       wl-clipboard
       #mako
       fastfetch
-      zathura
+      #zathura
+      pavucontrol
       anki
       lesspass-cli
       libreoffice-qt
@@ -57,6 +58,7 @@
       nix-output-monitor
       nh
       pdftk
+      element-desktop
 
       libinput
       xournalpp
@@ -68,6 +70,9 @@
       #grim
       #slurp
       #imagemagick
+
+      nmgui
+      bluetui
 
       smile
       yazi
@@ -90,7 +95,7 @@
       ffmpeg
       mpv
       htop
-      swww
+      awww
       gimp
 
       unzip
@@ -101,6 +106,8 @@
       texlivePackages.moderncv
 
       zellij
+
+      gocryptfs
       ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -131,10 +138,42 @@
   #
   # Note that this works only when home manager is managing the shell. Otherwise any such variables have to be set somewhere else
   home.sessionVariables = {
-    WLR_NO_HARDWARE_CURSORS=1; # This way the cursor is not invisible on wayland
+    WLR_NO_HARDWARE_CURSORS = 1; # This way the cursor is not invisible on wayland
+    NIXOS_OZONE_WL = 1; # Forces Electron apps to use Wayland natively
+    GDK_BACKEND = "wayland,x11"; # Tries Wayland first, falls back to X11 if needed
+    QT_QPA_PLATFORM = "wayland;xcb";
   };
 
-  programs.waybar.enable = true;
+  nixpkgs.overlays = [
+    (final: prev: {
+      zathuraPkgs = prev.zathuraPkgs.overrideScope (sfinal: sprev: {
+        zathura_core = sprev.zathura_core.overrideAttrs (oldAttrs: {
+          version = "2026.03.27";
+          src = prev.fetchFromGitHub {
+            owner = "pwmt";
+            repo = "zathura";
+            rev = "2026.03.27";
+            hash = "sha256-KnLwt0bjTj2YI1GAu02JzPT02ITKAHIApxDZSBAHt9A=";
+          };
+        });
+      });
+      zathura = final.zathuraPkgs.zathuraWrapper;
+    })
+  ];
+
+  programs.zathura = {
+    enable = true;
+    mappings = {
+      "_" = "zoom in";
+      "<BackSpace>" = "jumplist backward";
+      "<S-BackSpace>" = "jumplist forward";
+      "[normal] f" = "toggle_fullscreen";
+      "[fullscreen] f" = "toggle_fullscreen";
+    };
+    options = {
+      selection-clipboard = "clipboard";
+    };
+  };
 
   services.swaync.enable = true;
 
@@ -162,8 +201,13 @@
       vim = "nvim $1";
       csv = "csvlens";
       down = "shutdown 0";
-      sync = " rclone bisync ~/Documents pcloud:/Documents --verbose;\
-	      rclone bisync ~/Bx pcloud:/Bx --verbose";
+      sync = ''
+        rclone bisync ~/Documents pcloud:/Documents --verbose
+        rclone sync ~/uboot1 pcloud:/fleet/uboot1 --verbose
+      '';
+      undock = "fusermount -u dock";
+
+      fixbt="handle=$(hcitool con | grep -oP \"handle \\K[0-9]+\"); sudo hcitool cmd 0x3f 0x57 $(printf 0x%02X $handle) 0x00 0x01";
 
       update = "nh os switch \"$HOME/NixOS\" -- --impure";
       home = "nh home switch \"$HOME/NixOS\"";
@@ -181,10 +225,15 @@
       };
     };
 
-    initContent = "autoload -U compinit; compinit
-		 source ~/NixOS/HomeModules/fzf-tab/fzf-tab.plugin.zsh
-		 bindkey \"^H\" backward-delete-char
-		 bindkey \"^?\" backward-delete-char";
+    initContent = lib.mkOrder 500 ''
+      dock() {
+        gocryptfs "$1" dock && cd dock
+      }
+      autoload -U compinit; compinit
+      source ~/NixOS/HomeModules/fzf-tab/fzf-tab.plugin.zsh
+      bindkey "^H" backward-delete-char
+      bindkey "^?" backward-delete-char
+    '';
 
   };
 
@@ -224,6 +273,7 @@
 
   programs.git = {
     enable = true;
+    signing.format = "openpgp";
     settings = {
       user = {
         name="Lilin";
@@ -236,6 +286,12 @@
     enable = true;
     cursorTheme.package = pkgs.quintom-cursor-theme;
     cursorTheme.name = "Quintom_Ink";
+    theme = {
+      name = "Adwaita-dark";
+      package = pkgs.gnome-themes-extra;
+    };
+    gtk3.theme = config.gtk.theme;
+    gtk4.theme = config.gtk.theme;
   };
 
   home.pointerCursor = {

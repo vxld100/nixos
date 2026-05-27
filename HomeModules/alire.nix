@@ -7,10 +7,10 @@
     nixpkgs.overlays = [
       (final: prev: {
         # Import the working nixpkgs revision
-        workingPkgs = import (builtins.fetchTarball {
+        workingPkgs = import (fetchTarball {
           url = "https://github.com/NixOS/nixpkgs/archive/3016b4b15d13f3089db8a41ef937b13a9e33a8df.tar.gz";
           sha256 = "sha256:11p1dpmm7nk15mb60m1ii4jywydy3g7x5qpyr9yarlzfl2c91x1z";  # Nix will tell you the right hash
-        }) { system = prev.system; };
+        }) { system = prev.stdenv.hostPlatform.system; };
         
         # Just use gnat14 from the working revision
         gnat14 = final.workingPkgs.gnat14;

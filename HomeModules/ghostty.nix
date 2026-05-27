@@ -8,6 +8,8 @@
       font-size = 15;
       font-family = "JetBrains Mono Nerd Font";
 
+      scrollbar = "never";
+
       background = "#0b0c0d";
       foreground = "#f0f0f0";
 

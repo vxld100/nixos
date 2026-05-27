@@ -14,8 +14,17 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  nixpkgs.overlays = [ (final: prev: {
+    lix = prev.lixPackageSets.stable.lix;
+    inherit (prev.lixPackageSets.stable)
+      nixpkgs-review
+      nix-eval-jobs
+      nix-fast-build
+      colmena;
+  }) ];
+
   nix = {
-    package = pkgs.nixVersions.stable;  # Changed from pkgs.nixFlakes
+    package = pkgs.lix;  # Changed from pkgs.nixFlakes
       # Here I used to have also flake-repl as an experimental feature, but at some point it wouldn't build anymore
       extraOptions = ''
       experimental-features = nix-command flakes 
@@ -42,6 +51,8 @@
     };
   };
 
+  boot.kernelParams = [ "appledrm.show_notch=1" ];
+
   security.unprivilegedUsernsClone = true;
 
 # Specify path to peripheral firmware files.
@@ -57,15 +68,6 @@
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
-    settings = {
-      General = {
-	ControllerMode = "bredr";
-	FastConnectable = true;
-	# Increase connection intervals
-	MinConnectionInterval = 6;
-	MaxConnectionInterval = 6;
-      };
-    };
   };
 
   hardware.acpilight.enable = true;
@@ -131,7 +133,7 @@
     xwayland.enable = true;
   };
 
-  programs.waybar.enable = true;
+  #programs.waybar.enable = true;
 
   xdg.portal = {
     enable = true;
@@ -173,32 +175,24 @@
       support32Bit = true;
     };
     pulse.enable = true;
+    wireplumber.extraConfig = {
+      "50-bt-latency" = {
+        "monitor.bluez.rules" = [
+          {
+            matches = [
+              { "node.name" = "~bluez_output.*"; }
+            ];
+            actions = {
+              "update-props" = {
+                "latency.internal.ns" = 100000000; # 100ms buffer cushion
+              };
+            };
+          }
+        ];
+      };
+    };
 # If you want to use JACK applications, uncomment this
 #jack.enable = true;
-    extraConfig.pipewire = {
-      "context.properties" = {
-	"default.clock.rate" = 48000;
-	"default.clock.quantum" = 1024;
-	"default.clock.min-quantum" = 1024;
-      };
-      "stream.properties" = {
-	"node.latency" = "1024/48000";
-      };
-    };
-    wireplumber.extraConfig.bluetoothEnhancements = {
-      "monitor.bluez.properties" = {
-	"bluez5.a2dp.aac.bitratemode" = "0";
-	"bluez5.a2dp.aac.bitrate" = "256000";
-	"bluez5.a2dp.aac.quality" = "5";
-	# Increase these buffer values
-	"bluez5.headset-buffer-time" = "256";  # was 128
-	"bluez5.headset-period-time" = "64";   # was 32
-	# Add these new ones
-	"bluez5.enable-msbc" = true;
-	"bluez5.enable-hw-volume" = false;     # Sometimes helps with crackling
-	"bluez5.autoswitch-profile" = false;   # Prevent profile switching
-      };
-    };
   };
 
 # Enable touchpad support (enabled default in most desktopManager).
@@ -268,13 +262,15 @@
     };
   };
 
-  services.kubo = {
-    enable = false;
-    autoMount = true;
+  services.searx = {
+    enable = true;
+    package = pkgs.searxng;
+    settings.server = {
+      bind_address = "127.0.0.1";
+      port = 8888;
+      secret_key = "8116f76451814758582cd6c9e1cebcea549e40c7807f83b87421be5d952eada9";
+    };
   };
-  
-  programs.kdeconnect.enable = true;
-
 
 # This option defines the first version of NixOS you have installed on this particular machine,
 # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.

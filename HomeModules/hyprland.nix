@@ -10,10 +10,11 @@
         "nm-applet"
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type image --watch cliphist store"
-        "swww-daemon"
+        "awww-daemon"
         "swaync"
         "hyprsunset"
         "fcitx5 -d --replace"
+        "waybar"
       ];
 
       exec = "hyprpaper";
@@ -66,9 +67,16 @@
         allow_workspace_cycles = true;
       };
 
-      windowrulev2 = [
-        "opacity 0.9 0.9,class:^(Alacritty)$"
-        "float, class:smile, title:Smile" 
+      windowrule = [
+        "match:class ^(Alacritty)$, opacity 0.9 0.9"
+        "match:class smile, float on"
+        "match:title Smile, float on"
+        "match:title Network Manager, float on"
+        "match:title Network Manager, size 1600 1200"
+        "match:title Network Manager, center true"
+        "match:title Volume Control, float on"
+        "match:title Volume Control, size 1600 1200"
+        "match:title Volume Control, center true"
         ];
 
       dwindle = {
@@ -108,11 +116,10 @@
       "$ModCtrl" = "SUPERCTRL";
 
       bind = [
-        "$mainMod, Return, exec, ghostty"
+        "$mainMod, Return, exec, kitty"
         "$mainMod, C, killactive, "
         "$ModShift, Q, exit, "
-        "$mainMod, E, exec, ghostty -e yazi ~"
-        "$mainMod, R, exec, ghostty -e yazi ~/Documents/"
+        "$mainMod, E, exec, kitty -e yazi ~"
         "$mainMod, V, togglefloating, "
         "$mainMod, S, exec, wofi --show=drun -i --matchin=fuzzy --normal-window --prompt=\"Choose application to run\""
         "$mainMod, P, pseudo, "
@@ -172,7 +179,8 @@
         "$mainMod, XF86MonBrightnessDown, exec, brightnessctl -d 'kbd_backlight' set 20-"
         ", XF86MonBrightnessUp, exec, brightnessctl set +50"
         ", XF86MonBrightnessDown, exec, brightnessctl set 50-"
-        "$mainMod, d, exec, GDK_BACKEND=x11 GDK_SCALE=2 GTK_THEME=Adwaita\:dark smile"
+        "$mainMod, d, exec, ~/.config/hypr/scripts/emoji.sh"
+        "$mainMod, r, exec, ~/.config/hypr/scripts/open_books.sh"
       ];
     };
   };

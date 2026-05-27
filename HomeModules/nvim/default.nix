@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 
 {
@@ -14,7 +14,7 @@
     ./rocq.nix
     #./extra.nix
   ];
-  home.packages = [ pkgs.coqPackages.coq-lsp ];
+  home.packages = with pkgs; [ coqPackages.coq-lsp ripgrep fd ];
   programs.nixvim = {
 
   plugins = {
@@ -23,9 +23,19 @@
     #friendly-snippets.enable = true;
     nvim-autopairs.enable = true;
     flash.enable = true;
-    cmp-latex-symbols.enable = true;
+    #cmp-latex-symbols.enable = true;
     #barbecue.enable = true;
     markdown-preview.enable = true;
+    direnv.enable = true;
+
+    vimtex = {
+      enable = true;
+      texlivePackage = null; #otherwise it installs the medium scheme
+      settings = {
+        compiler_enabled = false;
+      };
+    };    
+    cmp-vimtex.enable = true;
 
     luasnip = {
       enable = true;
@@ -40,6 +50,29 @@
 
     treesitter = {
       enable = true;
+      highlight = { 
+        enable = true;
+        disable = [ "nix" ];
+      };
+      indent.enable = true;
+      folding.enable = true;
+      grammarPackages = with config.programs.nixvim.plugins.treesitter.package.builtGrammars; [
+        bash
+        json
+        lua
+        make
+        markdown
+        nix
+        regex
+        toml
+        vim
+        vimdoc
+        xml
+        yaml
+        go
+        python
+        ada
+      ];
     };
 
     toggleterm = {
@@ -72,8 +105,11 @@
       enable = true;
       servers = {
         nixd.enable = true;
+        gopls.enable = true;
         pyright.enable = true;
-	ltex.enable = true;
+	texlab = {
+          enable = true;
+        };
         clangd.enable = true;
         coq_lsp = {
           enable = true;
@@ -89,7 +125,10 @@
     };
   };
 
-  globals.mapleader = " ";
+  globals = {
+    mapleader = " ";
+    maplocalleader = ",";
+  };
 
   opts = {
     number = true;
@@ -99,6 +138,7 @@
     wrap = false;
     hlsearch = false;
     incsearch = true;
+    conceallevel = 2;
   };
 
   autoCmd = [
@@ -121,6 +161,20 @@
       event = "FileType";
       pattern = "nix";
       command = "setlocal shiftwidth=2 softtabstop=2 expandtab";
+    }
+    {
+      event = "FileType";
+      pattern = [ "nix" ];
+      callback.__raw = ''
+        function(ev)
+          vim.treesitter.stop(ev.buf)
+        end
+      '';
+    }
+    {
+      event = "FileType";
+      pattern = "go";
+      command = "setlocal shiftwidth=4 softtabstop=4 expandtab";
     }
   ];
 
