@@ -17,6 +17,8 @@
   # Packages to install
   home.packages = with pkgs; [
     # Server and system utilities
+    rclone
+    awscli2
     htop
     btop
     iotop
@@ -25,6 +27,7 @@
     tcpdump
     lsof
     ethtool
+    steam
     
     # Development tools
     git
@@ -117,6 +120,7 @@
   # Custom only for this machine
   wayland.windowManager.hyprland = {
     settings = {
+      #"monitor" = lib.mkForce "HDMI-A-1, 2560x1440@59.95Hz, 0x0, 1";
       input = {
         kb_options = lib.mkForce "grp:alt_shift_toggle, altwin:swap_lalt_lwin";
       };
