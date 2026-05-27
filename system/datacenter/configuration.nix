@@ -22,6 +22,21 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
+  fonts = {
+    fontconfig = {
+      enable = true;
+      hinting = {
+        enable = true;
+        style = "full";  # or "full" if text looks too light
+      };
+      subpixel = {
+        lcdfilter = "light";  # or "light" for less fringing
+        rgba = "rgb";  # Set to "bgr" if your OLED uses BGR layout
+      };
+      antialias = true;
+    };
+  };
+
   # Enable networking
   networking = {
     hostName = "datacenter";
@@ -32,6 +47,17 @@
   };
   
 
+  hardware.bluetooth = {
+    enable = true; # enables support for Bluetooth
+      powerOnBoot = true; # powers up the default Bluetooth controller on boot
+      settings = {
+	General = {
+	  Experimental = true;
+	};
+      };
+  };
+
+  
   services.openssh = {
     enable = true;
     # Optional security settings
