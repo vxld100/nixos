@@ -172,6 +172,10 @@
     };
     options = {
       selection-clipboard = "clipboard";
+      recolor = true;
+      recolor-lightcolor = "#2C2C2C";
+      recolor-darkcolor = "#E4E4E4";
+      recolor-reverse-video = true;
     };
   };
 
