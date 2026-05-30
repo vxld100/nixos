@@ -107,6 +107,12 @@
         nixd.enable = true;
         gopls.enable = true;
         pyright.enable = true;
+        harper_ls = {
+          enable = true;
+          filetypes = [
+              "markdown" "text" "tex"
+          ];
+        };
 	texlab = {
           enable = true;
         };
