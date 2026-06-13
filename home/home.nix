@@ -97,6 +97,8 @@
       htop
       awww
       gimp
+      whois
+      dig
 
       unzip
       zip
