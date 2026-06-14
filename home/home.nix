@@ -146,22 +146,22 @@
     QT_QPA_PLATFORM = "wayland;xcb";
   };
 
-  nixpkgs.overlays = [
-    (final: prev: {
-      zathuraPkgs = prev.zathuraPkgs.overrideScope (sfinal: sprev: {
-        zathura_core = sprev.zathura_core.overrideAttrs (oldAttrs: {
-          version = "2026.03.27";
-          src = prev.fetchFromGitHub {
-            owner = "pwmt";
-            repo = "zathura";
-            rev = "2026.03.27";
-            hash = "sha256-KnLwt0bjTj2YI1GAu02JzPT02ITKAHIApxDZSBAHt9A=";
-          };
-        });
-      });
-      zathura = final.zathuraPkgs.zathuraWrapper;
-    })
-  ];
+  #nixpkgs.overlays = [
+  #  (final: prev: {
+  #    zathuraPkgs = prev.zathuraPkgs.overrideScope (sfinal: sprev: {
+  #      zathura_core = sprev.zathura_core.overrideAttrs (oldAttrs: {
+  #        version = "2026.03.27";
+  #        src = prev.fetchFromGitHub {
+  #          owner = "pwmt";
+  #          repo = "zathura";
+  #          rev = "2026.03.27";
+  #          hash = "sha256-KnLwt0bjTj2YI1GAu02JzPT02ITKAHIApxDZSBAHt9A=";
+  #        };
+  #      });
+  #    });
+  #    zathura = final.zathuraPkgs.zathuraWrapper;
+  #  })
+  #];
 
   programs.zathura = {
     enable = true;
@@ -176,6 +176,7 @@
       recolor-lightcolor = "#2C2C2C";
       recolor-darkcolor = "#E4E4E4";
       recolor-reverse-video = true;
+      font = "monospace 16";
     };
   };
 
