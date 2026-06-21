@@ -81,6 +81,7 @@
       bat
       zsh-fzf-tab
       csvlens
+      visidata
       gtrash
       devenv
 
