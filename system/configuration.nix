@@ -53,6 +53,11 @@
 
   boot.kernelParams = [ "appledrm.show_notch=1" ];
 
+  swapDevices = [ {
+    device = "/var/lib/swapfile";
+    size = 16*1024;
+  }];
+
   security.unprivilegedUsernsClone = true;
 
 # Specify path to peripheral firmware files.
