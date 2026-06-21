@@ -48,6 +48,7 @@
           };
           modules = [
             ./system/configuration.nix
+            ./system/postgresql.nix
             /home/lilin/NixOS/secrets/eduroam.nix
             apple-silicon-support.nixosModules.default
           ];
