@@ -64,7 +64,7 @@
   hardware.asahi = {
     enable = true;
     peripheralFirmwareDirectory = ./firmware;
-#setupAsahiSound = false;
+    setupAsahiSound = true;
   };
 
   hardware.graphics.enable = true;
@@ -160,10 +160,7 @@
     };
   };
 
-  services.displayManager.ly = {
-    enable = true;
-  };
-
+  services.displayManager.ly.enable = true;
 
 # services.xserver.xkb.options = "eurosign:e,caps:escape";
 
