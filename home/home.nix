@@ -209,7 +209,9 @@
       down = "shutdown 0";
       sync = ''
         rclone bisync ~/Documents pcloud:/Documents --verbose
-        rclone sync ~/uboot1 pcloud:/fleet/uboot1 --verbose
+        rclone sync ~/haven/uboot1 pcloud:/haven/fleet/uboot1 --verbose
+        rclone sync ~/haven/flake.nix pcloud:/haven/fleet/flake.nix --verbose
+        rclone sync ~/haven/flake.lock pcloud:/haven/fleet/flake.lock --verbose
       '';
       undock = "fusermount -u dock";
 
