@@ -59,6 +59,7 @@
       nh
       pdftk
       element-desktop
+      mailspring
 
       libinput
       xournalpp

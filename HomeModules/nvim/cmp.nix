@@ -1,16 +1,14 @@
-{ pkgs, ... }:
 {
   programs.nixvim = {
-
   plugins.cmp = {
     enable = true;
-    enabled = ''
-      function()
-        return not require("luasnip").in_snippet()
-      end
-    '';
     autoEnableSources = true;
     settings = {
+      enabled = ''
+        function()
+          return not require("luasnip").in_snippet()
+        end
+      '';
       sources = [
         { name = "nvim_lsp"; }
         { name = "luasnip"; }
@@ -50,8 +48,8 @@
         "<C-f>" = "cmp.mapping.scroll_docs(4)";
         "<C-Space>" = "cmp.mapping.complete()";
         "<C-e>" = "cmp.mapping.abort()";
+        };
       };
     };
-  };
   };
 }

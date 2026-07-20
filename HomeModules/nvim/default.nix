@@ -116,7 +116,7 @@
         clangd.enable = true;
         coq_lsp = {
           enable = true;
-          package = pkgs.vimPlugins.Coqtail;
+          package = pkgs.coqPackages.coq-lsp;
         };
       };
       preConfig = ''
