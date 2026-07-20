@@ -177,6 +177,12 @@
       support32Bit = true;
     };
     pulse.enable = true;
+    extraConfig.pipewire."99-asahi-samplerate" = {
+      "context.properties" = {
+        "default.clock.rate" = 48000;
+        "default.clock.allowed-rates" = [ 48000 ];
+      };
+    };
     wireplumber.extraConfig = {
       "50-bt-latency" = {
         "monitor.bluez.rules" = [
@@ -272,6 +278,11 @@
       port = 8888;
       secret_key = "8116f76451814758582cd6c9e1cebcea549e40c7807f83b87421be5d952eada9";
     };
+  };
+
+  programs.fuse = {
+    enable = true;
+    userAllowOther = true;
   };
 
 # This option defines the first version of NixOS you have installed on this particular machine,
