@@ -2,6 +2,8 @@ local ls = require("luasnip")
 local s = ls.snippet
 local t = ls.text_node
 local i = ls.insert_node
+local d = ls.dynamic_node
+local sn = ls.snippet_node
 local rep = require("luasnip.extras").rep
 local fmta = require("luasnip.extras.fmt").fmta
 local line_begin = require("luasnip.extras.conditions.expand").line_begin
@@ -30,8 +32,10 @@ local symbols = {
   psi    = "\\psi",
   rho    = "\\rho",
   ooo    = "\\infty",
+  vn     = "\\varnothing",
   xx     = "\\times",
   ["in"] = "\\in",
+  nin    = "\\notin",
   fa     = "\\forall",
   cd     = "\\cdot",
   ra     = "\\righarrow",
@@ -39,6 +43,17 @@ local symbols = {
   iff    = "\\iff",
   dots   = "\\dots",
   ldots  = "\\ldots",
+  ss     = "\\subset",
+  pss    = "\\subsetneq",
+  sseq   = "\\subseteq",
+  sus    = "\\superset",
+  psus   = "\\supersetneq",
+  suseq  = "\\superseteq",
+  cup    = "\\cup",
+  ccup   = "\\bigcup",
+  cap    = "\\cap",
+  ccap   = "\\bigcap",
+  smin   = "\\setminus",
   ["=>"] = "\\implies",
   ["!="] = "\\neq",
   ["<="] = "\\leq",
@@ -68,6 +83,42 @@ local environments = {
       ]],
       { i(1), i(2), rep(1) })),
   s( {
+      trig = "sec ",
+      snippetType = "autosnippet",
+      wordTrig = false,
+      condition = line_begin,
+    },
+    fmta(
+      [[
+      \section{<>}
+      \label{sec:<>}
+      ]],
+      { i(1), rep(1) })),
+  s( {
+      trig = "sub ",
+      snippetType = "autosnippet",
+      wordTrig = false,
+      condition = line_begin,
+    },
+    fmta(
+      [[
+      \subsection{<>}
+      \label{sec:<>}
+      ]],
+      { i(1), rep(1) })),
+  s( {
+      trig = "subsub ",
+      snippetType = "autosnippet",
+      wordTrig = false,
+      condition = line_begin,
+    },
+    fmta(
+      [[
+      \subsubsection{<>}
+      \label{sec:<>}
+      ]],
+      { i(1), rep(1) })),
+  s( {
       trig = "dm ",
       snippetType = "autosnippet",
       wordTrig = false,
@@ -80,6 +131,14 @@ local environments = {
       \]
       ]],
       { i(1) })),
+  s( {
+      trig = ".im ",
+      snippetType = "autosnippet",
+      wordTrig = false,
+      condition = not in_mathzone,
+    },
+    fmta("\\( <> \\) <>",
+      { i(1), i(2) })),
   s( {
       trig = "eq ",
       snippetType = "autosnippet",
@@ -166,6 +225,18 @@ local formatting = {
       condition = in_mathzone,
     },
     fmta("_{ <> } <>", { i(1), i(2) })),
+  s( {
+      trig = ".tb ",
+      snippetType = "autosnippet",
+      wordTrig = false,
+    },
+    fmta("\\textbf{<>} <>", { i(1), i(2) })),
+  s( {
+      trig = ".ti ",
+      snippetType = "autosnippet",
+      wordTrig = false,
+    },
+    fmta("\\textit{<>} <>", { i(1), i(2) })),
 }
 
 local operators = {
