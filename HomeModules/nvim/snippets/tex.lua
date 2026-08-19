@@ -31,6 +31,8 @@ local symbols = {
   phi    = "\\phi",
   psi    = "\\psi",
   rho    = "\\rho",
+  eps    = "\\epsilon",
+  veps   = "\\varepsilon",
   ooo    = "\\infty",
   vn     = "\\varnothing",
   xx     = "\\times",
@@ -38,7 +40,7 @@ local symbols = {
   nin    = "\\notin",
   fa     = "\\forall",
   cd     = "\\cdot",
-  ra     = "\\righarrow",
+  ra     = "\\rightarrow",
   la     = "\\leftarrow",
   iff    = "\\iff",
   dots   = "\\dots",
@@ -54,10 +56,15 @@ local symbols = {
   cap    = "\\cap",
   ccap   = "\\bigcap",
   smin   = "\\setminus",
-  ["=>"] = "\\implies",
-  ["!="] = "\\neq",
-  ["<="] = "\\leq",
-  [">="] = "\\geq",
+  setn   = "\\mathbb{N}",
+  setz   = "\\mathbb{Z}",
+  setq   = "\\mathbb{Q}",
+  setr   = "\\mathbb{R}",
+  setc   = "\\mathbb{C}",
+  imp    = "\\implies",
+  neq    = "\\neq",
+  leq    = "\\leq",
+  geq    = "\\geq",
 }
 
 local math_symbols = {}
@@ -92,6 +99,8 @@ local environments = {
       [[
       \section{<>}
       \label{sec:<>}
+
+
       ]],
       { i(1), rep(1) })),
   s( {
@@ -104,8 +113,10 @@ local environments = {
       [[
       \subsection{<>}
       \label{sec:<>}
+
+      <>
       ]],
-      { i(1), rep(1) })),
+      { i(1), rep(1), i(2) })),
   s( {
       trig = "subsub ",
       snippetType = "autosnippet",
@@ -116,8 +127,10 @@ local environments = {
       [[
       \subsubsection{<>}
       \label{sec:<>}
+
+      <>
       ]],
-      { i(1), rep(1) })),
+      { i(1), rep(1), i(2) })),
   s( {
       trig = "dm ",
       snippetType = "autosnippet",
@@ -203,11 +216,72 @@ local environments = {
     },
     fmta(
       [[
-      \begin{enumeration}
+      \begin{enumerate}
       \item <>
-      \end{enumeration}
+      \end{enumerate}
       ]],
       { i(1) })),
+  s( {
+      trig = "qt ",
+      snippetType = "autosnippet",
+      wordTrig = false,
+      condition = line_begin,
+    },
+    fmta(
+      [[
+      \begin{quote}
+      <>
+      \end{quote}
+      ]],
+      { i(1) })),
+}
+
+local templates = {
+  s( {
+      trig = ".tmp ",
+      snippetType = "autosnippet",
+      wordTrig = false,
+      condition = line_begin,
+    },
+    fmta(
+      [[
+      \documentclass[11pt,a4paper]{article}
+
+      % Essential packages
+      \usepackage[margin=2.5cm]{geometry}
+      \usepackage{amsmath, amssymb, amsthm} % Essential math packages
+      \usepackage{graphicx}
+      \usepackage{hyperref}
+      \usepackage{subcaption}
+      \usepackage{tablefootnote}
+      \usepackage{indentfirst}
+      \usepackage{enumitem}
+      \usepackage{booktabs} % For nice tables
+      \usepackage{bm} % Bold math symbols
+
+      \usepackage{apacite}
+      \bibliographystyle{apacite}
+
+      \setlength{\parskip}{0.5em}
+      \setlist[enumerate]{nosep, leftmargin=1.5cm}
+
+      \title{<>}
+      \author{Luca Boschung}
+      \date{\today}
+
+      \begin{document}
+
+      \maketitle
+
+      <>
+
+      
+      \bibliography{references}
+
+      \end{document}
+
+      ]],
+      { i(1), i(2) })),
 }
 
 local formatting = {
@@ -226,6 +300,13 @@ local formatting = {
     },
     fmta("_{ <> } <>", { i(1), i(2) })),
   s( {
+      trig = "tx ",
+      snippetType = "autosnippet",
+      wordTrig = false,
+      condition = in_mathzone,
+    },
+    fmta("\\text{<>} <>", { i(1), i(2) })),
+  s( {
       trig = ".tb ",
       snippetType = "autosnippet",
       wordTrig = false,
@@ -237,6 +318,12 @@ local formatting = {
       wordTrig = false,
     },
     fmta("\\textit{<>} <>", { i(1), i(2) })),
+  s( {
+      trig = ".q ",
+      snippetType = "autosnippet",
+      wordTrig = false,
+    },
+    fmta("``<>\'\' <>", { i(1), i(2) })),
 }
 
 local operators = {
@@ -321,5 +408,6 @@ append_snippets(environments)
 append_snippets(formatting)
 append_snippets(operators)
 append_snippets(functions)
+append_snippets(templates)
 
 ls.add_snippets("tex", all_snippets)
