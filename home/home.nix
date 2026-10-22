@@ -178,7 +178,7 @@
       recolor-lightcolor = "#2C2C2C";
       recolor-darkcolor = "#E4E4E4";
       recolor-reverse-video = true;
-      font = "monospace 16";
+      #font = "monospace 16";
     };
   };
 
@@ -209,8 +209,8 @@
       csv = "csvlens";
       down = "shutdown 0";
       sync = ''
-        rclone bisync ~/Documents pcloud:/Documents --verbose
-        rclone sync ~/haven/uboot1 pcloud:/haven/fleet/uboot1 --verbose
+        rclone bisync ~/Documents pcloud:/Documents --verbose 
+        rclone sync ~/haven/uboot1 pcloud:/haven/fleet/uboot1 --verbose 
         rclone sync ~/haven/flake.nix pcloud:/haven/fleet/flake.nix --verbose
         rclone sync ~/haven/flake.lock pcloud:/haven/fleet/flake.lock --verbose
       '';
