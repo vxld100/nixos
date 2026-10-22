@@ -24,13 +24,33 @@ end
 -- 3. Greek letters and math symbols
 local symbols = {
   alpha  = "\\alpha",
+  Alpha  = "\\Alpha",
   beta   = "\\beta",
+  Beta   = "\\Beta",
   gamma  = "\\gamma",
+  Gamma  = "\\Gamma",
   theta  = "\\theta",
+  Theta  = "\\Theta",
+  sigma  = "\\sigma",
+  Sigma  = "\\Sigma",
+  omega  = "\\omega",
+  Omega  = "\\Omega",
+  lambda = "\\lambda",
+  Lambda = "\\Lambad",
+  delta  = "\\delta",
+  Delta  = "\\Delta",
+  vega   = "\\vega",
+  Vega   = "\\Vega",
   mu     = "\\mu",
+  Mu     = "\\Mu",
   phi    = "\\phi",
+  Phi    = "\\Phi",
   psi    = "\\psi",
+  Psi    = "\\Psi",
   rho    = "\\rho",
+  Rho    = "\\Rho",
+  tau    = "\\tau",
+  Tau    = "\\Tau",
   eps    = "\\epsilon",
   veps   = "\\varepsilon",
   ooo    = "\\infty",
@@ -45,6 +65,8 @@ local symbols = {
   iff    = "\\iff",
   dots   = "\\dots",
   ldots  = "\\ldots",
+  vdots  = "\\vdots",
+  ddots  = "\\ddots",
   ss     = "\\subset",
   pss    = "\\subsetneq",
   sseq   = "\\subseteq",
@@ -100,9 +122,9 @@ local environments = {
       \section{<>}
       \label{sec:<>}
 
-
+      <>
       ]],
-      { i(1), rep(1) })),
+      { i(1), rep(1), i(2) })),
   s( {
       trig = "sub ",
       snippetType = "autosnippet",
@@ -145,12 +167,12 @@ local environments = {
       ]],
       { i(1) })),
   s( {
-      trig = ".im ",
+      trig = ".i ",
       snippetType = "autosnippet",
       wordTrig = false,
       condition = not in_mathzone,
     },
-    fmta("\\( <> \\) <>",
+    fmta("\\(<>\\)<>",
       { i(1), i(2) })),
   s( {
       trig = "eq ",
@@ -166,7 +188,7 @@ local environments = {
       ]],
       { i(1) })),
   s( {
-      trig = "eqa ",
+      trig = "equ ",
       snippetType = "autosnippet",
       wordTrig = false,
       condition = line_begin,
@@ -186,26 +208,22 @@ local environments = {
     },
     fmta(
       [[
-      \begin{equation}
       \begin{aligned}
       <>
       \end{aligned}
-      \end{equation}
       ]],
       { i(1) })),
   s( {
-      trig = "ali ",
+      trig = "gat ",
       snippetType = "autosnippet",
       wordTrig = false,
       condition = line_begin,
     },
     fmta(
       [[
-      \begin{equation}
-      \begin{aligned}
+      \begin{gathered}
       <>
-      \end{aligned}
-      \end{equation}
+      \end{gathered}
       ]],
       { i(1) })),
   s( {
@@ -231,6 +249,19 @@ local environments = {
       [[
       \begin{quote}
       <>
+      \end{quote}
+      ]],
+      { i(1) })),
+  s( {
+      trig = "qti ",
+      snippetType = "autosnippet",
+      wordTrig = false,
+      condition = line_begin,
+    },
+    fmta(
+      [[
+      \begin{quote}
+      \textit{<>}
       \end{quote}
       ]],
       { i(1) })),
@@ -286,44 +317,69 @@ local templates = {
 
 local formatting = {
   s( {
+      trig = ".m",
+      snippetType = "autosnippet",
+      wordTrig = false,
+      condition = in_mathzone,
+    },
+    fmta("\\mathbb{<>}<>", { i(1), i(2) })),
+  s( {
       trig = "^",
       snippetType = "autosnippet",
       wordTrig = false,
       condition = in_mathzone,
     },
-    fmta("^{ <> } <>", { i(1), i(2) })),
+    fmta("^{<>}<>", { i(1), i(2) })),
   s( {
       trig = "_",
       snippetType = "autosnippet",
       wordTrig = false,
       condition = in_mathzone,
     },
-    fmta("_{ <> } <>", { i(1), i(2) })),
+    fmta("_{<>}<>", { i(1), i(2) })),
   s( {
       trig = "tx ",
       snippetType = "autosnippet",
       wordTrig = false,
       condition = in_mathzone,
     },
-    fmta("\\text{<>} <>", { i(1), i(2) })),
+    fmta("\\text{<>}<>", { i(1), i(2) })),
   s( {
       trig = ".tb ",
       snippetType = "autosnippet",
       wordTrig = false,
     },
-    fmta("\\textbf{<>} <>", { i(1), i(2) })),
+    fmta("\\textbf{<>}<>", { i(1), i(2) })),
   s( {
       trig = ".ti ",
       snippetType = "autosnippet",
       wordTrig = false,
     },
-    fmta("\\textit{<>} <>", { i(1), i(2) })),
+    fmta("\\textit{<>}<>", { i(1), i(2) })),
   s( {
       trig = ".q ",
       snippetType = "autosnippet",
       wordTrig = false,
     },
     fmta("``<>\'\' <>", { i(1), i(2) })),
+  s( {
+      trig = "lrr",
+      snippetType = "autosnippet",
+      wordTrig = false,
+    },
+    fmta("\\left(<>\\right)<>", { i(1), i(2) })),
+  s( {
+      trig = "lrs",
+      snippetType = "autosnippet",
+      wordTrig = false,
+    },
+    fmta("\\left[<>\\right]<>", { i(1), i(2) })),
+  s( {
+      trig = "lrc",
+      snippetType = "autosnippet",
+      wordTrig = false,
+    },
+    fmta("\\left\\{<>\\right\\}<>", { i(1), i(2) })),
 }
 
 local operators = {
@@ -332,31 +388,31 @@ local operators = {
       snippetType = "autosnippet",
       condition = in_mathzone,
     },
-    fmta("\\frac{ <> }{ <> } <>", { i(1), i(2), i(3) })),
-  s( {
-      trig = "/ ",
-      snippetType = "autosnippet",
-      condition = in_mathzone,
-    },
-    fmta("\\frac{ ${VISUAL} }{ <> } <>", { i(1), i(2) })),
+    fmta("\\frac{<>}{<>}<>", { i(1), i(2), i(3) })),
   s( {
       trig = "lim ",
       snippetType = "autosnippet",
       condition = in_mathzone,
     },
-    fmta("\\lim_{ <> \\to <> } <> ", { i(1, "n"), i(2, "\\infty"), i(3) })),
+    fmta("\\lim_{<> \\to <>}<> ", { i(1, "n"), i(2, "\\infty"), i(3) })),
   s( {
       trig = "sum ",
       snippetType = "autosnippet",
       condition = in_mathzone,
     },
-    fmta("\\sum_{ <> }^{ <> } <>", { i(1, "n=0"), i(2, "\\infty"), i(3) })),
+    fmta("\\sum_{<>}^{<>}<>", { i(1, "n=0"), i(2, "\\infty"), i(3) })),
+  s( {
+      trig = "prod ",
+      snippetType = "autosnippet",
+      condition = in_mathzone,
+    },
+    fmta("\\prod_{<>}^{<>}<>", { i(1, "n=0"), i(2, "\\infty"), i(3) })),
   s( {
       trig = "int ",
       snippetType = "autosnippet",
       condition = in_mathzone,
     },
-    fmta("\\int_{ <> }^{ <> } <> d{ <> } <>", { i(1, "-\\infty"), i(2, "\\infty"), i(3), i(4, "x"), i(5) })),
+    fmta("\\int_{<>}^{<>}<>d{<>}<>", { i(1, "-\\infty"), i(2, "\\infty"), i(3), i(4, "x"), i(5) })),
 }
 
 local functions = {
@@ -366,7 +422,7 @@ local functions = {
       snippetType = "autosnippet",
       condition = in_mathzone,
     },
-    fmta("\\sin\\left( <> \\right) <>", { i(1), i(2) })
+    fmta("\\sin\\left(<>\\right)<>", { i(1), i(2) })
   ),
   s(
     {
@@ -374,7 +430,7 @@ local functions = {
       snippetType = "autosnippet",
       condition = in_mathzone,
     },
-    fmta("\\cos\\left( <> \\right) <>", { i(1), i(2) })
+    fmta("\\cos\\left(<>\\right)<>", { i(1), i(2) })
   ),
   s(
     {
@@ -382,7 +438,7 @@ local functions = {
       snippetType = "autosnippet",
       condition = in_mathzone,
     },
-    fmta("\\tan\\left( <> \\right) <>", { i(1), i(2) })
+    fmta("\\tan\\left(<>\\right)<>", { i(1), i(2) })
   ),
   s(
     {
@@ -390,7 +446,7 @@ local functions = {
       snippetType = "autosnippet",
       condition = in_mathzone,
     },
-    fmta("\\e^{ <> } <>", { i(1), i(2) })
+    fmta("\\e^{<>}<>", { i(1), i(2) })
   ),
 }
 

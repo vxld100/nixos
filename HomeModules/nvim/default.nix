@@ -39,13 +39,22 @@
 
     luasnip = {
       enable = true;
+      fromLua = [
+          {
+            paths = ./snippets;
+            lazyLoad = true;
+          }
+        ];
       fromSnipmate = [
-      {
-	paths = ./snippets;
-	exclude = [ "all" ];
-	lazyLoad = true;
-      }
+        {
+          paths = ./snippets;
+          exclude = [ "all" "tex" ];
+          lazyLoad = false;
+        }
       ];
+      settings = {
+          enable_autosnippets = true;
+        };
     };
 
     treesitter = {
@@ -107,6 +116,7 @@
         nixd.enable = true;
         gopls.enable = true;
         pyright.enable = true;
+        lua_ls.enable = true;
         ltex = {
           enable = true;
         };
