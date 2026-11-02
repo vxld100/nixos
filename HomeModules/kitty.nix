@@ -31,6 +31,7 @@
       background_blur = 1;
 
       window_padding_width = 15;
+      remember_window_size = "no";
 
       confirm_os_window_close = 0;
 

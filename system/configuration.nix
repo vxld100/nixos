@@ -58,7 +58,7 @@
     size = 16*1024;
   }];
 
-  security.unprivilegedUsernsClone = true;
+  #security.unprivilegedUsernsClone = true;
 
 # Specify path to peripheral firmware files.
   hardware.asahi = {
