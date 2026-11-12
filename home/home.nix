@@ -358,7 +358,7 @@
     {
       event = "BufWritePost";
       pattern = "*.tex";
-      command = "silent !bash -c \"cd '%:p:h' && xelatex '%:t' && cp '%:t:r.pdf' '..'\"";
+      command = ''execute 'silent !bash -c ' . shellescape('cd ' . shellescape(expand('%:p:h')) . ' && xelatex -synctex=1 -interaction=nonstopmode ' . shellescape(expand('%:p')) . ' && cp ' . shellescape(expand('%:t:r') . '.pdf') . ' ' . shellescape(expand('%:t:r') . '.synctex.gz') . ' .. && zathura --synctex-forward ' . line('.') . ':1:' . shellescape(expand('%:p')) . ' ' . shellescape(expand('%:p:h') . '/../' . expand('%:t:r') . '.pdf') . ' && rm -f ' . shellescape(expand('%:p:h') . '/../' . expand('%:t:r') . '.synctex.gz'))'';
       group = "TexAutoCompile";
     }
     {
